@@ -1,0 +1,1028 @@
+@import "variables";
+@import "mixins";
+@import url(../fonts/font.css);
+html {
+    scroll-behavior: smooth;
+}
+body {
+    padding: 0;
+    margin: 0;
+    direction: rtl;
+    overflow-x: hidden !important;
+    font-display: swap;
+    font-family: "main-font" , Arial, sans-serif;
+    line-height: unset !important;
+    width: 100% !important;
+    min-width: 300px;
+    font-size: 14px;
+    background-color: $background-color;
+    * {
+        box-sizing: border-box !important;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none !important;
+    }
+    ul{
+        padding: 0;
+        list-style-type: none;
+    }
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+    input , textarea{
+        outline: 0px solid transparent!important;
+        border: 0px solid transparent;
+        font-family: "main-font";
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+}
+@keyframes spinMf {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.inside-loader {
+    @include flexMixin(row, center, center);
+
+    svg {
+        animation: spinMf 1s ease-in-out 0s infinite normal;
+    }
+}
+
+.mm-width{
+    max-width: 1300px;
+}
+.main-header{
+    width: 100%;
+    @include flexMixin(row,space-between,center);
+    height: 64px;
+    background-color: #fff;
+    padding: 0 15px 0 35px;
+    border-radius: 0 0 15px 15px;
+    margin: 0 0 16px;
+    font-size: 15px;
+    .user-data{
+        @include flexMixin(row,flex-start,center);
+        gap: 20px;
+        cursor: pointer;
+    }
+    .user-img{
+        border-radius: 50%;
+    }
+    .user-img{
+        @include flexMixin(row,center,center);
+        position: relative;
+    }
+    .header-icons{
+        @include flexMixin(row,flex-end,center);
+        gap: 10px;
+    }
+    .notif-wrapper{
+        position: relative;
+        &::after{
+            display: block;
+            content: " ";
+            width: 8px;
+            height: 8px;
+            background-color: #eb5757;
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            right: -2px;
+            border: 1px solid #fff;
+        }
+    }
+    .notif-img{
+        position: relative;
+        top: 3px;
+        cursor: pointer;
+    }
+}
+.page-wrapper{
+    width: 100%;
+    @include flexMixin(row,flex-start,flex-start);
+    padding: 0 16px;
+    gap: 20px;
+    margin: 0 0 100px;
+}
+.side-bar-wrapper{
+    flex: 0 0 256px;
+    @include flexMixin(row,center,center);
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 32px 15px;
+    .side-bar-items{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        gap: 10px;
+    }
+    .side-bar-item{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        height: 40px;
+        padding: 0 11px;
+    }
+    .link-side-bar{
+        @include flexMixin(row,flex-start,center);
+        width: 100%;
+        gap: 6px;
+        color: #000;
+    }
+    .side-bar-item.active{
+        border-radius: 4px;
+        background: #F5EEF9;
+        .link-side-bar{
+            color: #9D58C5;
+        }
+    }
+}
+.welcome-name{
+    padding: 31px 0 34px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #7b7b7b;
+    @include flexMixin(row,flex-start,center);
+}
+.main-content{
+    width: 100%;
+}
+.courses-page{
+    width: 100%;
+    @include flexMixin(column,flex-start,flex-start);
+    gap: 18px;
+    .courses-main-data{
+        width: 100%;
+        @include flexMixin(row,flex-start,flex-start);
+        gap: 17px;
+        height: 395px;
+    }
+    .spot-datas-wrapper{
+        background-color: #fff;
+        flex : 0 0 500px;
+        padding: 35px;
+        border-radius: 20px;
+        @include flexMixin(column,flex-start,center);
+        gap: 32px;
+    }
+    .box-header{
+        width: 100%;
+        border-bottom: 1px solid #9D58C5;
+        padding: 0 0 17px;
+        @include flexMixin(row,space-between,center);
+    }
+    .box-title{
+        font-size: 21px;
+    }
+    .spot-datas{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        gap: 11px;
+    }
+    .spot-data{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+    }
+    .spot-item-title{
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .data-box-wrapper{
+        background-color: #E5DEFF66;
+        flex: 0 0 316px;
+        @include flexMixin(row,space-between,center);
+        padding: 0 18px;
+        height: 46px;
+        border-radius: 12px;
+        font-size: 15px;
+    }
+    .code-place{
+        font-size: 18px;
+        max-width: 200px;
+        overflow-x: hidden;
+        text-align: left;
+        direction: ltr;
+    }
+    .copy-items{
+        @include flexMixin(row,flex-end,center);
+        gap: 9px;
+        cursor: pointer;
+    }
+    .tutuorials-btn{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        height: 47px;
+        color: #fff;
+        background-color: $color-2;
+        transition: $transition;
+        border-radius: 23.5px;
+        font-size: 20px;
+        font-weight: bold;
+        border: 2px solid $color-2;
+        padding: 2px 0 0;
+        &:hover{
+            color: $color-2;
+            background-color: #fff;
+        }
+    }
+    .active-classes{
+        flex: 0 0 536px;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 35px;
+        gap: 10px;
+        @include flexMixin(column,flex-start,flex-start);
+        height: 395px;
+    }
+    .filters-wrapper{
+        @include flexMixin(row,flex-end,center);
+        gap: 10px;
+    }
+    .filter-btn{
+        height: 28px;
+        padding: 2px 15px 0;
+        @include flexMixin(row,center,center);
+        border: 1px solid $color-2;
+        border-radius: 6px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: $transition;
+    }
+    .filter-btn.active{
+        background-color: $color-2;
+        color: #fff;
+    }
+    .live-classes-wrapper{
+        @include flexMixin(row,flex-start,center);
+        width: 100%;
+        overflow-x: scroll;
+        padding: 30px 10px;
+        gap: 20px;
+
+    }
+    .live-class{
+        flex: 0 0 330px;
+        @include flexMixin(row,flex-start,center);
+        background-color: $color-3;
+        gap: 13px;
+        color: #fff;
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+        img{
+            border-radius: 15px;
+        }
+    }
+    .class-text-details{
+        @include flexMixin(column,space-between,flex-start);
+        width: 100%;
+        padding: 5px 0 0;
+    }
+    .class-name{
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .class-teacher{
+        font-size: 15px;
+    }
+    .names-wrapper{
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 2px;
+    }
+    .live-label{
+        position: absolute;
+        background-color: #F09D00;
+        top: -15px;
+        right: -10px;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        @include flexMixin(row,center,center);
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .enter-class-btn{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        margin: 50px 0 0;
+        background-color: $color-2;
+        height: 30px;
+        border-radius: 38px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: $transition;
+        border: 2px solid $color-2;
+        padding: 2px 0 0;
+        &:hover{
+            color: $color-2;
+            background-color: #fff;
+        }
+    }
+    .all-classes-wrapper{
+        max-width: 100%;
+        width: 1053px;
+        background-color: #fff;
+        padding: 41px 35px;
+        border-radius: 20px;
+        gap: 46px;
+        @include flexMixin(column,flex-start,center);
+    }
+    .all-classes{
+        @include flexMixin(row,flex-start,center);
+        gap: 17px;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .class-wrapper{
+        flex: 0 0 220px;
+        min-width: 23%;
+        @include flexMixin(column,flex-start,center);
+        background-color: $color-3;
+        color: #fff;
+        padding: 38px 14px 18px;
+        border-radius: 22px;
+    }
+    .main-class-name{
+        font-size: 20px;
+        font-weight: bold;
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        overflow: scroll;
+        height: 45px;
+    }
+    .main-class-teacher{
+        font-size: 18px;
+    }
+    .session-data{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.10);
+        margin: 11px 0;
+        padding: 16px 0;
+    }
+    .session-name{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .session-date-data{
+        font-size: 18px;
+        @include flexMixin(row,center,center);
+        gap: 5px;
+    }
+    .enter-to-class-btn{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        height: 33px;
+        background-color: $color-2;
+        border-radius: 23.5px;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 2px 0 0;
+        transition: $transition;
+        cursor: pointer;
+        border: 1px solid $color-2;
+        &:hover{
+            background-color: #fff;
+            color: $color-2;
+        }
+    }
+    .see-session{
+        margin: 10px 0 0;
+        background-color: #F09D00;
+        border: 1px solid #F09D00;
+        color: #fff;
+        &:hover{
+            color: #F09D00;
+        }
+    }
+    .disabled.class-wrapper{
+        color: $color-3;
+        background-color: #fff;
+        border: 1px solid $color-3;
+        .enter-to-class-btn{
+            background-color: #fff;
+            color: $color-2;
+        }
+        .see-session{
+            color: #F09D00;
+        }
+        .session-data{
+            height: 91px;
+            @include flexMixin(row,center,center);
+        }
+        .bad-news{
+            border-radius: 6px;
+            background: rgba(240, 43, 0, 0.10);
+            color: #F02B00;
+            font-weight: bolder;
+            font-size: 18px;
+            width: 100%;
+            @include flexMixin(row,center,center);
+            height: 40px;
+        }
+    }
+    .notice-area-wrapper{
+        max-width: 100%;
+        width: 1053px;
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 36px;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 40px 31px 60px;
+    }
+    .notices-wrapper{
+        width: 100%;
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 12px;
+    }
+    .notif-item{
+        max-width: 100%;
+        font-size: 18px;
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        height: 46px;
+        padding: 13px 20px;
+    }
+    .notuf-title{
+        font-weight: bold;
+        margin-left: 5px;
+    }
+}
+
+.jalasat-page{
+    width: 100%;
+    @include flexMixin(column,flex-start,center);
+    gap: 17px;
+    .box-header {
+        width: 100%;
+        border-bottom: 1px solid #9D58C5;
+        padding: 0 0 17px;
+        @include flexMixin(row, space-between, center);
+    }
+    .box-title {
+        font-size: 21px;
+    }
+    .done-jalasat{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 35px 35px 40px;
+        gap: 35px;
+    }
+    .jalasat-wrapper{
+        width: 100%;
+        @include flexMixin(row,flex-start,center);
+        gap: 17px;
+        flex-wrap: wrap;
+    }
+    .jalase-item{
+        background-color: $color-3;
+        color: #fff;
+        @include flexMixin(column,flex-start,center);
+        border-radius: 21.6px;
+        padding: 32px 15px 15px;
+        flex: 0 0 220px;
+        gap: 13px;
+        border: 2px solid $color-3;
+    }
+    .jalase-item.active{
+        color: $color-3;
+        background-color: #fff;
+        .jalase-time-datas{
+            background-color: #F5EEF9;
+        }
+        .see-detials-btn{
+            color: $color-2;
+            background-color: #fff;
+        }
+    }
+    .jalase-title{
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 0 5px;
+    }
+    .jalase-time-datas{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        gap: 5px;
+        font-size: 18px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.10);
+        padding: 5px 0;
+    }
+    .day{
+        font-weight: bold;
+    }
+    .see-detials-btn{
+        width: 100%;
+        border-radius: 23.5px;
+        color: #fff;
+        cursor: pointer;
+        @include flexMixin(row,center,center);
+        padding: 2px 0 0 ;
+        background-color: $color-2;
+        font-size: 18px;
+        font-weight: bold;
+        height: 33px;
+        border: 2px solid $color-2;
+        transition: $transition;
+        &:hover{
+            color: $color-2;
+            background-color: transparent;
+        }
+    }
+    .session-detail{
+        width: 100%;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 35px 35px 40px;
+        @include flexMixin(column,flex-start,center);
+        gap: 30px;
+    }
+    .main-row{
+        width: 100%;
+        @include flexMixin(row,flex-start,flex-start);
+        gap: 27px;
+    }
+    .flies-wrapper{
+        @include flexMixin(column,flex-start,center);
+        gap: 30px;
+        flex: 0 0 411px;
+        max-width: 100%;
+        background-color: #fff;
+        border-radius: 20px;
+        background: #EEF4FF;
+        padding: 50px;
+    }
+    .file-title{
+        font-size: 20px;
+        font-weight: bold;
+        width: 100%;
+    }
+    .file-filters{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        gap: 20px;
+        font-size: 15px;
+    }
+    .file-filter{
+        height: 32px;
+        width: 96px;
+        @include flexMixin(row,center,center);
+        border: 1px solid #000;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: $transition;
+        &:hover{
+            transform: translateY(-5px);
+        }
+    }
+    .file-filter.active{
+        color: #fff;
+        border-radius: 20px;
+        background: #7453C6;
+        border: 1px solid #7453C6;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    .file-row{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+    }
+    .watch-offline-video-wrapper{
+        width: 100%;
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 25px;
+        border-radius: 20px;
+        background: #1B0B4E;
+        padding: 36px 30px 30px;
+        color: #fff;
+    }
+    .offline-title{
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .video-box{
+        @include flexMixin(row,center,center);
+        background-color: #fff;
+        width: 100%;
+        height: 300px;
+        border-radius: 20px;
+    }
+}
+
+.profile-page{
+    width: 100%;
+    @include flexMixin(row,flex-start,flex-start);
+    gap: 17px;
+    .box-header {
+        width: 100%;
+        border-bottom: 1px solid #9D58C5;
+        padding: 0 0 17px;
+        @include flexMixin(row, space-between, center);
+    }
+    .box-title {
+        font-size: 21px;
+    }
+    .how-introduced-and-set-password{
+        flex: 0 0 500px;
+        max-width: 50%;
+        @include flexMixin(column,flex-start,center);
+        gap: 11px;
+    }
+    .how-you-know-us{
+        width: 100%;
+        background-color: #fff;
+        @include flexMixin(column,flex-start,flex-start);
+        padding: 35px 35px 40px;
+        border-radius: 20px;
+        gap: 20px;
+        position: relative;
+    }
+    .intro-ways-box{
+        width: 90%;
+        @include flexMixin(row,flex-start,center);
+        gap: 10px;
+        font-size: 13px;
+        flex-wrap: wrap;
+        position: absolute;
+        right: 5%;
+        padding: 20px 10px;
+        background-color: #fff;
+        border: 2px solid $color-1;
+        border-radius: 20px;
+        bottom: -80px;
+        z-index: 2;
+    }
+    .intro-ways-item{
+        height: 30px;
+        @include flexMixin(row,center,center);
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        padding: 0 10px;
+        cursor: pointer;
+    }
+    .input-result{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+        gap: 20px;
+        padding: 5px 24px 5px 7px;
+        height: 46px;
+        border: 1px solid $color-1;
+        border-radius: 12px;
+    }
+    .result-text{
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .submit-btn{
+        flex: 0 0 73px;
+        height: 36px;
+        @include flexMixin(row,center,center);
+        background-color: $color-2;
+        color: #fff;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .change-password-wrapper{
+        width: 100%;
+        background-color: #fff;
+        @include flexMixin(column, flex-start, flex-start);
+        padding: 35px 35px 40px;
+        border-radius: 20px;
+        gap: 20px;
+        position: relative;
+        input{
+            border: 1px solid $color-1;
+            width: 100%;
+            height: 46px;
+            padding: 0 24px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+    }
+    .pass-erros {
+        position: absolute;
+        @include flexMixin(column, center, center);
+        gap: 10px;
+        left: 20px;
+        top: 20px;
+        color: red;
+    }
+    .submit-pass{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        background-color: $color-2;
+        color: #fff;
+        height: 47px;
+        border-radius: 23.5px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .info-err-box{
+        width: 100%;
+        @include flexMixin(row,flex-start,flex-start);
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .info-err{
+        background-color: #F02B00;
+        color: #fff;
+        padding: 5px 20px;
+        border-radius: 20px;
+    }
+    .profile-data{
+        flex: 0 0 500px;
+        background-color: #fff;
+        padding: 35px 35px 40px;
+        border-radius: 20px;
+        gap: 32px;
+        @include flexMixin(column,flex-start,center);
+    }
+    .forms-wrapper{
+        width: 100%;
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 11px;
+    }
+    .input-wrapper{
+        width: 100%;
+        @include flexMixin(row,space-between,flex-start);
+        position: relative;
+    }
+    .info-option-box{
+        width: 288px;
+        @include flexMixin(column,center,center);
+        z-index: 2;
+        position: absolute;
+        background-color: #fff;
+        border: 2px solid $color-1;
+        left: 0;
+        padding: 20px 0;
+        gap: 10px;
+        border-radius: 12px;
+        top: 50px;
+    }
+    .info-option{
+        height: 50px;
+        cursor: pointer;
+        width: 90%;
+        @include flexMixin(row,center,center);
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        font-weight: bold;
+    }
+    .entry-type{
+        flex: 0 0 288px;
+        height: 46px;
+        border: 1px solid $color-1;
+        border-radius: 12px;
+        padding: 11px;
+    }
+    .input-box{
+        flex: 0 0 288px;
+        height: 46px;
+        border-radius: 12px;
+        padding: 11px;
+        background: rgba(229, 222, 255, 0.40);
+        @include flexMixin(row,flex-start,center);
+        cursor: not-allowed;
+    }
+    .text-area-input{
+        flex: 0 0 288px;
+        height: 165px;
+        border: 1px solid $color-1;
+        border-radius: 12px;
+        padding: 11px;
+        resize: none;
+    }
+    .input-title{
+        font-size: 18px;
+        padding: 10px 0 0;
+    }
+    .input-select{
+        flex: 0 0 288px;
+        height: 46px;
+        border: 1px solid $color-1;
+        border-radius: 12px;
+        padding: 11px;
+        @include flexMixin(row,space-between,center);
+        cursor: pointer;
+        img{
+            transform: rotate(180deg);
+            transition: $transition;
+        }
+    }
+    .birth-day-inputs{
+        @include flexMixin(row,flex-start,center);
+        flex: 0 0 288px;
+        gap: 13px;
+        input{
+            height: 50px;
+            border: 1px solid $color-1;
+            border-radius: 12px;
+            padding: 0 11px;
+        }
+    }
+    .day-input{
+        width: 62px;
+    }
+    .month-input{
+        width:88px;
+    }
+    .year-input{
+        width: 113px;
+    }
+    .inputs-submit-btn{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        height: 47px;
+        background-color: $color-2;
+        color: #fff;
+        border-radius: 23.5px;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+        transition: $transition;
+        border: 2px solid $color-2;
+        &:hover{
+            color: $color-2;
+            background-color: #fff;
+        }
+    }
+    
+}
+
+
+.finance-page-wrapper{
+    width: 100%;
+    @include flexMixin(column,flex-start,flex-start);
+    gap: 30px;
+    .factors-part{
+        width: 100%;
+        max-width: 966px;
+        @include flexMixin(column,flex-start,center);
+        gap: 12px;
+        padding: 17px 17px 110px;
+        background-color: #fff;
+        border-radius: 14px;
+    }
+    .factor-header{
+        margin: 5px 0 10px;
+        font-weight: bold;
+        color: #7E818A;
+    }
+    .factor-header,.factor-row{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+        padding: 0 27px;
+    }
+    .factor-row{
+        height: 68px;
+        background-color: rgba(229, 222, 255, 0.40);
+        border-radius: 20px;
+        font-size: 15px;
+    }
+    .factor-item{
+        @include flexMixin(column,center,center);
+    }
+    .first-col{
+        flex: 0 0 140px;
+    }
+    .last-col{
+        flex: 0 0 100px;
+    }
+    .show-detials-btn{
+        border: 1px solid #000;
+        width: 100px;
+        @include flexMixin(row,center,center);
+        height: 33px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: $transition;
+        &:hover{
+            color: #fff;
+            background-color: #000;
+        }
+    }
+    .second-row{
+        width: 100%;
+        @include flexMixin(row,space-between,flex-start);
+        gap: 20px;
+        max-width: 966px;
+    }
+    .total-pay-amount{
+        background-color: #fff;
+        flex: 0 0 313px;
+        padding: 30px 20px 30px;
+        border-radius: 20px;
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 27px;
+    }
+    .total-title{
+        font-size: 21px;
+        font-weight: bold;
+    }
+    .total-amount{
+        width: 100%;
+        @include flexMixin(row,flex-start,center);
+        font-weight: bold;
+        font-size: 25px;
+        gap: 5px;
+    }
+    .pay-all-bills-btn{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        font-weight: bold;
+        font-size: 20px;
+        color: #fff;
+        border-radius: 23.5px;
+        background: $color-2;
+        height: 47px;
+        border: 2px solid $color-2;
+        transition: $transition;
+        cursor: pointer;
+        &:hover{
+            color: $color-2;
+            background-color: #fff;
+        }
+    }
+    .wait-to-be-paid{
+        width: 100%;
+        max-width: 628px;
+        background-color: #fff;
+        border-radius: 20px;
+        background-color: #fff;
+        padding: 30px 20px 30px;
+        @include flexMixin(column, flex-start, flex-start);
+        gap: 27px;
+    }
+    .wait-title{
+        font-weight: bold;
+        font-size: 21px;
+    }
+    .next-pays-box{
+        width: 100%;
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 10px;
+        font-size: 13px;
+    }
+    .next-pay-header{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+        font-weight: bold;
+        color: #7E818A;
+        padding: 0 6px;
+    }
+    .next-pay-row{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+        height: 46px;
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        padding: 6px;
+    }
+    .pay-first-col{
+        flex: 0 0 90px;
+    }
+    .pay-last-col{
+        flex: 0 0 73px;
+    }
+    .pay-ghest-btn{
+        width: 100%;
+        height: 36px;
+        @include flexMixin(row,center,center);
+        color: #fff;
+        background-color: $color-2;
+        font-weight: bold;
+        border: 2px solid $color-2;
+        border-radius: 12px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: $transition;
+        &:hover{
+            color: $color-2;
+            background-color: #fff;
+        }
+    }
+}
