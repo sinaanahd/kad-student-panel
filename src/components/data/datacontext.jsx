@@ -49,7 +49,12 @@ const DataProvider = ({ children }) => {
     if (user) {
       get_user(user.user_id);
     } else {
-      if (window.location.pathname !== "/login") {
+      if (
+        window.location.pathname !== "/login" ||
+        window.location.pathname !== "/login-code" ||
+        window.location.pathname !== "/forget-pass" ||
+        window.location.pathname !== "/sign-up"
+      ) {
         window.location.pathname = "/login";
       }
     }

@@ -136,12 +136,12 @@ const Login = () => {
 
             <div className="not-user">
               <p className="not-user-text">حساب کاربری نداری ؟</p>
-              <Link to="#" className="go-to-sign-up">
+              <Link to="/sign-up" className="go-to-sign-up">
                 ثبت‌نام
               </Link>
             </div>
             <div className="enter-btns">
-              <Link to="#" className="enter-with-sms">
+              <Link to="/login-code" className="enter-with-sms">
                 ورود از طریق کد پیامکی
               </Link>
             </div>
