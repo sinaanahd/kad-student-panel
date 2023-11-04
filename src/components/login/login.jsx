@@ -121,7 +121,7 @@ const Login = () => {
                 <></>
               )}
             </div>
-            <Link to="#" className="forget-link">
+            <Link to="/forget-pass" className="forget-link">
               فراموشی رمز عبور
             </Link>
             {pause ? (
