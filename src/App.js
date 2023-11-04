@@ -7,6 +7,7 @@ import SideBar from './components/side-bar/side-bar';
 import WelcomeName from './components/welcome-name/welcome-name';
 import ProfilePage from './components/profile/profile';
 import FinancePage from './components/finance/finance-page';
+import Login from './components/login/login';
 
 import "./asset/css/index.scss";
 import { useContext } from 'react';
@@ -17,7 +18,8 @@ function App() {
   return (
     <>
     <BrowserRouter>
-        <Header user={user}/>
+    {window.location.pathname !== "/login" ? <>
+    <Header user={user}/>
         <div className="page-wrapper">
           <SideBar />
           <div className="main-content mm-width">
@@ -34,6 +36,12 @@ function App() {
             </Switch>
           </div>
         </div>
+    </> : <>
+            <Switch>
+              <Route path="/login" exact component={Login} />
+            </Switch>
+    </> }
+        
     </BrowserRouter>
     </>
   );

@@ -44,7 +44,15 @@ const DataProvider = ({ children }) => {
     },
   ];
   useEffect(() => {
-    get_user(9166);
+    // get_user(9166);
+    //get_user(8220);
+    if (user) {
+      get_user(user.user_id);
+    } else {
+      if (window.location.pathname !== "/login") {
+        window.location.pathname = "/login";
+      }
+    }
     get_kelasses();
   }, []);
 

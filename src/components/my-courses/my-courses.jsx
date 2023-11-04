@@ -1,10 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
-import copy_icon from "../../asset/images/my-courses/copy-icon.svg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import LittleLoading from "../reuseables/little-loading";
 import User_kelas from "./user-kelas/user-kelas";
+import SpotData from "./spot-datas/spot-datas";
 const MYCourses = () => {
   const { user, kelasses } = useContext(DataContext);
   const fill_classes = () => {
@@ -27,64 +26,7 @@ const MYCourses = () => {
       </Helmet>
       <div className="courses-page">
         <div className="courses-main-data">
-          <section className="spot-datas-wrapper">
-            <div className="box-header">
-              <h2 className="box-title">اطلاعات اسپات</h2>
-            </div>
-            <div className="spot-datas">
-              <span className="spot-data">
-                <span className="spot-item-title">نام کاربری</span>
-                <span className="data-box-wrapper">
-                  <span className="code-place">
-                    {user ? user.skyRoom_username : <LittleLoading />}
-                  </span>
-                  <span className="copy-items">
-                    <img
-                      src={copy_icon}
-                      alt="کپی کرددن"
-                      className="copy-icon"
-                    />
-                    <span className="copy-text">کپی!</span>
-                  </span>
-                </span>
-              </span>
-              <span className="spot-data">
-                <span className="spot-item-title">رمز عبور</span>
-                <span className="data-box-wrapper">
-                  <span className="code-place">
-                    {user ? user.skyRoom_password : <LittleLoading />}
-                  </span>
-                  <span className="copy-items">
-                    <img
-                      src={copy_icon}
-                      alt="کپی کرددن"
-                      className="copy-icon"
-                    />
-                    <span className="copy-text">کپی!</span>
-                  </span>
-                </span>
-              </span>
-              <span className="spot-data">
-                <span className="spot-item-title">لایسنس</span>
-                <span className="data-box-wrapper">
-                  <span className="code-place">
-                    {user ? user.spot_license : <LittleLoading />}
-                  </span>
-                  <span className="copy-items">
-                    <img
-                      src={copy_icon}
-                      alt="کپی کرددن"
-                      className="copy-icon"
-                    />
-                    <span className="copy-text">کپی!</span>
-                  </span>
-                </span>
-              </span>
-            </div>
-            <Link to="#" className="tutuorials-btn">
-              آموزش ها
-            </Link>
-          </section>
+          <SpotData />
           <section className="active-classes">
             <div className="box-header">
               <h2 className="box-title">درحال برگزاری</h2>
