@@ -185,6 +185,19 @@ body {
 .main-content{
     width: 100%;
 }
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        background-color: #228b22;
+    }
+    to{
+        transform: scale(1.5);
+        background-color: #2dcc2d;
+    }
+}
+
+
 .courses-page{
     width: 100%;
     @include flexMixin(column,flex-start,flex-start);
@@ -355,6 +368,7 @@ body {
         transition: $transition;
         border: 2px solid $color-2;
         padding: 2px 0 0;
+        color: #fff;
         &:hover{
             color: $color-2;
             background-color: #fff;
@@ -383,6 +397,20 @@ body {
         color: #fff;
         padding: 38px 14px 18px;
         border-radius: 22px;
+    }
+    .class-is-active{
+        position: relative;
+        &::before{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            content: " ";
+            z-index: 20;
+            top: -5px;
+            right: -5px;
+            border-radius: 50%;
+            animation: pulse 1s linear 0s infinite alternate-reverse;
+        }
     }
     .main-class-name{
         font-size: 20px;
@@ -424,6 +452,7 @@ body {
         transition: $transition;
         cursor: pointer;
         border: 1px solid $color-2;
+        color: #fff;
         &:hover{
             background-color: #fff;
             color: $color-2;
@@ -483,7 +512,6 @@ body {
         font-size: 18px;
         border-radius: 12px;
         background: rgba(229, 222, 255, 0.40);
-        height: 46px;
         padding: 13px 20px;
     }
     .notuf-title{

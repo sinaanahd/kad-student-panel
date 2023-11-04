@@ -4,6 +4,8 @@ import { DataContext } from "../data/datacontext";
 import LittleLoading from "../reuseables/little-loading";
 import User_kelas from "./user-kelas/user-kelas";
 import SpotData from "./spot-datas/spot-datas";
+import ActiveClasses from "./active-classes/active-classes";
+import NotifPart from "./notifs/notif";
 const MYCourses = () => {
   const { user, kelasses } = useContext(DataContext);
   const fill_classes = () => {
@@ -27,65 +29,7 @@ const MYCourses = () => {
       <div className="courses-page">
         <div className="courses-main-data">
           <SpotData />
-          <section className="active-classes">
-            <div className="box-header">
-              <h2 className="box-title">درحال برگزاری</h2>
-              <div className="filters-wrapper">
-                <span className="filter-btn active">کلاس‌های رایگان</span>
-                <span className="filter-btn">ثبت نام شده</span>
-              </div>
-            </div>
-            <div className="live-classes-wrapper">
-              <div className="live-class">
-                <img
-                  src="https://kadschool.com/media/Kad_Kelas_Photos/Kelas_%D9%81%D9%84%D8%B3%D9%81%D9%87_%D9%88_%D9%85%D9%86%D8%B7%D9%82_%D8%A7%D8%B3%D8%AA%D8%A7%D8%AF_%D8%B3%D9%88%D8%AF%DB%8C%D8%A7%D9%86.webp"
-                  alt="اسم کلاس"
-                  width={131}
-                  height={131}
-                />
-                <div className="class-text-details">
-                  <span className="names-wrapper">
-                    <span className="class-name">فسفه و منطق</span>
-                    <span className="class-teacher">استاد هامون سبطی</span>
-                  </span>
-                  <span className="enter-class-btn">ورود به کلاس</span>
-                  <span className="live-label">زنده</span>
-                </div>
-              </div>
-              <div className="live-class">
-                <img
-                  src="https://kadschool.com/media/Kad_Kelas_Photos/Kelas_%D9%81%D9%84%D8%B3%D9%81%D9%87_%D9%88_%D9%85%D9%86%D8%B7%D9%82_%D8%A7%D8%B3%D8%AA%D8%A7%D8%AF_%D8%B3%D9%88%D8%AF%DB%8C%D8%A7%D9%86.webp"
-                  alt="اسم کلاس"
-                  width={131}
-                  height={131}
-                />
-                <div className="class-text-details">
-                  <span className="names-wrapper">
-                    <span className="class-name">فسفه و منطق</span>
-                    <span className="class-teacher">استاد هامون سبطی</span>
-                  </span>
-                  <span className="enter-class-btn">ورود به کلاس</span>
-                  <span className="live-label">زنده</span>
-                </div>
-              </div>
-              <div className="live-class">
-                <img
-                  src="https://kadschool.com/media/Kad_Kelas_Photos/Kelas_%D9%81%D9%84%D8%B3%D9%81%D9%87_%D9%88_%D9%85%D9%86%D8%B7%D9%82_%D8%A7%D8%B3%D8%AA%D8%A7%D8%AF_%D8%B3%D9%88%D8%AF%DB%8C%D8%A7%D9%86.webp"
-                  alt="اسم کلاس"
-                  height={131}
-                  width={131}
-                />
-                <div className="class-text-details">
-                  <span className="names-wrapper">
-                    <span className="class-name">فسفه و منطق</span>
-                    <span className="class-teacher">استاد هامون سبطی</span>
-                  </span>
-                  <span className="enter-class-btn">ورود به کلاس</span>
-                  <span className="live-label">زنده</span>
-                </div>
-              </div>
-            </div>
-          </section>
+          <ActiveClasses />
         </div>
         <section className="all-classes-wrapper">
           <div className="box-header">
@@ -165,7 +109,7 @@ const MYCourses = () => {
             دیدن جلسات این کلاس
             </span>
           </div> */}
-            <div className="class-wrapper disabled">
+            {/* <div className="class-wrapper disabled">
               <span className="main-class-name">فسفه و منطق</span>
               <span className="main-class-teacher">استاد هامون سبطی</span>
               <span className="session-data">
@@ -175,29 +119,10 @@ const MYCourses = () => {
               <span className="enter-to-class-btn see-session">
                 دیدن جلسات این کلاس
               </span>
-            </div>
+            </div> */}
           </div>
         </section>
-        <section className="notice-area-wrapper">
-          <div className="box-header">
-            <h2 className="box-title">اطلاعیه ها</h2>
-          </div>
-          <div className="notices-wrapper">
-            <div className="notif-item">
-              <span className="notuf-title">دلیل قطع دسترسی کلاس فلان :</span>
-              <span className="notif-text">
-                دلیل قطع دسترسیدلیل قطع دسترسیدلیل قطع دسترسیدلیل قطع دسترسیدلیل
-                قطع دسترسی
-              </span>
-            </div>
-            <div className="notif-item">
-              <span className="notuf-title">قسط :</span>
-              <span className="notif-text">
-                وقتی موعد قسط نزدیک شده به کاربر اطلاع بدیم و یادآوری بکنیم
-              </span>
-            </div>
-          </div>
-        </section>
+        <NotifPart />
       </div>
     </>
   );

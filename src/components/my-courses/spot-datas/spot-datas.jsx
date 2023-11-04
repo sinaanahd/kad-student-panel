@@ -10,7 +10,7 @@ const SpotData = () => {
   return (
     <section className="spot-datas-wrapper">
       <div className="box-header">
-        <h2 className="box-title">اطلاعات اسپات</h2>
+        <h2 className="box-title">دسترسی های لازم</h2>
         {copied ? <span className="spot-copied">کپی شد!</span> : <></>}
       </div>
       <div className="spot-datas">

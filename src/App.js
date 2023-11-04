@@ -28,7 +28,7 @@ function App() {
             <WelcomeName user={user}/>
             <Switch>
               <Route path="/finance" exact component={FinancePage} />
-              <Route path="/jalasat" component={JalasatPage} />
+              <Route path="/jalasat/:id" component={JalasatPage} />
               <Route path="/my-courses" exact component={MYCourses} />
               <Route path="/jalasat" exact component={JalasatPage} />
               <Route path="/profile" exact component={ProfilePage} />
