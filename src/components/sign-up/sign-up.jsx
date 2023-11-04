@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import axios from "axios";
 import LittleLoading from "../reuseables/little-loading";
@@ -7,7 +7,12 @@ import { DataContext } from "../data/datacontext";
 import arrow from "../../asset/images/login/arrow-vector.svg";
 
 const SignUp = () => {
-  const { setUser, subjects, years } = useContext(DataContext);
+  useEffect(() => {
+    if (user) {
+      window.location.pathname = "/my-courses";
+    }
+  }, []);
+  const { setUser, subjects, years, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
   const [err_phone, set_err_phone] = useState(false);
   const [pause, setPause] = useState(false);

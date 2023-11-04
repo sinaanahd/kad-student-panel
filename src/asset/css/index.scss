@@ -81,6 +81,29 @@ body {
         @include flexMixin(row,flex-start,center);
         gap: 20px;
         cursor: pointer;
+        position: relative;
+    }
+    .user-pop-up-options{
+        position: absolute;
+        top: 45px;
+        border-radius: 12px;
+        background: #F0EDFA;
+        width: 100%;
+        z-index: 10;
+        padding: 20px;
+        @include flexMixin(column,flex-start,center);
+        gap: 10px;
+    }
+    .pop-up-option{
+        color: #000;
+        border-bottom: 1px solid $color-2;
+        width: 100%;
+        @include flexMixin(row,center,center);
+        padding: 0 0 10px;
+    }
+    .exit{
+        color: #F00;
+        font-weight: bold;
     }
     .user-img{
         border-radius: 50%;

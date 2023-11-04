@@ -1,10 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import LittleLoading from "../reuseables/little-loading";
 import { DataContext } from "../data/datacontext";
 import axios from "axios";
 const Forget_pass = () => {
-  const { setUser } = useContext(DataContext);
+  useEffect(() => {
+    if (user) {
+      window.location.pathname = "/my-courses";
+    }
+  }, []);
+  const { setUser, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
   const [err_phone, set_err_phone] = useState(false);
   const [sms_code, set_sms_code] = useState(false);

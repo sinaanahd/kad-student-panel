@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import axios from "axios";
 import LittleLoading from "../reuseables/little-loading";
@@ -6,7 +6,12 @@ import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
 
 const Login = () => {
-  const { setUser } = useContext(DataContext);
+  useEffect(() => {
+    if (user) {
+      window.location.pathname = "/my-courses";
+    }
+  }, []);
+  const { user, setUser } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
   const [err_phone, set_err_phone] = useState(false);
   const [pass, setPass] = useState(false);

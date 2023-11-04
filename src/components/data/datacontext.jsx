@@ -1,17 +1,15 @@
 import { createContext, useState, useEffect } from "react";
-import Header from "../header/header";
-import SideBar from "../side-bar/side-bar";
-import WelcomeName from "../welcome-name/welcome-name";
 import axios from "axios";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const user_data = JSON.parse(localStorage.getItem("kad-user")) || false;
 const kelasses_data = JSON.parse(localStorage.getItem("kelasses")) || false;
+const jalasat_data = JSON.parse(localStorage.getItem("jalasat")) || false;
 
 const DataContext = createContext();
 const DataProvider = ({ children }) => {
   const [user, setUser] = useState(user_data);
   const [kelasses, setKelasses] = useState(kelasses_data);
+  const [jalasat, set_jalasat] = useState(jalasat_data);
   const subjects = [
     { id: 0, name: "ریاضی" },
 
@@ -44,23 +42,26 @@ const DataProvider = ({ children }) => {
     },
   ];
   useEffect(() => {
-    // get_user(9166);
-    //get_user(8220);
+    get_user(9166);
+    // get_user(8220);
     if (user) {
-      get_user(user.user_id);
-    } else {
-      if (
-        window.location.pathname !== "/login" ||
-        window.location.pathname !== "/login-code" ||
-        window.location.pathname !== "/forget-pass" ||
-        window.location.pathname !== "/sign-up"
-      ) {
-        window.location.pathname = "/login";
-      }
+      // get_user(user.user_id);
     }
     get_kelasses();
+    get_jalasat();
   }, []);
-
+  const get_jalasat = () => {
+    axios
+      .get("https://kadschool.com/backend/kad_api/admin_jalasat")
+      .then((res) => {
+        const jalasat = res.data;
+        set_jalasat(jalasat);
+        localStorage.setItem("jalasat", JSON.stringify(jalasat));
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
   const get_user = (id) => {
     axios
       .get(`https://kadschool.com/backend/kad_api/user/${id}`)
@@ -86,7 +87,9 @@ const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ user, setUser, kelasses, subjects, years }}>
+    <DataContext.Provider
+      value={{ user, setUser, kelasses, subjects, years, jalasat }}
+    >
       {children}
     </DataContext.Provider>
   );
