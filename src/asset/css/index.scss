@@ -183,6 +183,10 @@ body {
             color: #9D58C5;
         }
     }
+    .img-wrapper{
+        flex: 0 0 24px;
+        @include flexMixin(row,center,center);
+    }
 }
 .welcome-name{
     padding: 31px 0 34px;
@@ -1352,6 +1356,104 @@ body {
 }
 
 
+.guide-page{
+    width: 100%;
+    @include flexMixin(row,flex-start,flex-start);
+    gap: 27px;
+    .spot-player{
+        flex: 0 0 466px;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 35px 27px;
+        @include flexMixin(column,flex-start,flex-start);
+    }
+    .box-header {
+        width: 100%;
+        border-bottom: 1px solid #9D58C5;
+        padding: 0 0 17px;
+        @include flexMixin(row, space-between, center);
+        margin: 0 0 32px;
+    }
+    .box-title {
+        font-size: 21px;
+    }
+    .semi-title{
+        font-size: 18px;
+        margin: 0 0 20px;
+    }
+    .ol-wrapper{
+        width: 100%;
+        padding: 15px 25px 15px 15px;
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        @include flexMixin(column,flex-start,flex-start);
+        gap: 10px;
+        font-size: 15px;
+        margin: 0 0 20px;
+    }
+    .inside-ul{
+        @include flexMixin(column,flex-start , flex-start);
+        gap: 5px;
+        margin: 5px 0 0;
+        li{
+            @include flexMixin(row,flex-start,flex-start);
+            gap: 6px;
+            &:before{
+                content : "-";
+                display: block;
+            
+            }
+        }
+    }
+    .visual-spot-guide{
+        width: 100%;
+        @include flexMixin(row,flex-start,center);
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .spot-guide-img{
+        width: 200px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .download-links-box{
+        flex: 0 0 466px;
+        border-radius: 20px;
+        background: #FFF;
+        @include flexMixin(column,flex-start,flex-start);
+        padding: 35px 27px;
+    }
+    .links-wrapper{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        gap: 12px;
+    }
+    .app-download-box{
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        width: 100%;
+        @include flexMixin(row,center,center);
+        height: 46px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .download-links{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        gap: 10px;
+    }
+    .os-link{
+        height: 30px;
+        font-size: 13px;
+        border-radius: 12px;
+        background: rgba(229, 222, 255, 0.40);
+        padding: 2px 10px 0;
+        @include flexMixin(row,center,center);
+        color: #000;
+        font-weight: bold;
+    }
+}
+
 @media (max-width : 1350px){
     .side-bar-wrapper {
         flex: 0 0 230px;
@@ -1756,6 +1858,29 @@ body {
         .not-photo-needed{
             @include flexMixin(column,flex-start,center);
             padding: 20px;
+        }
+    }
+    .guide-page{
+        @include flexMixin(column,flex-start,center);
+        .spot-player{
+            padding: 20px;
+            flex: unset;
+            width: 100%;
+        }
+        .visual-spot-guide{
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            justify-content: flex-start;
+        }
+        .spot-guide-img{
+            width: 80%;
+        }
+        .box-title{
+            font-size: 19px;
+        }
+        .download-links-box{
+            width: 100%;
+            flex: unset;
         }
     }
 }

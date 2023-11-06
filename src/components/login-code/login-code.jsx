@@ -30,7 +30,7 @@ const LoginCode = () => {
         )
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           setPause(false);
           if (been_before) {
             set_code_data(verification_code);

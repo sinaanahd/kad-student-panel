@@ -14,6 +14,7 @@ import Login from './components/login/login';
 import LoginCode from './components/login-code/login-code';
 import SignUp from "./components/sign-up/sign-up";
 import Forget_pass from "./components/forget-pass/forget-pass";
+import GuidePage from "./components/guide/guide";
 
 function App() {
   const {user} = useContext(DataContext);
@@ -48,6 +49,7 @@ function App() {
               <Route path="/my-courses" exact component={MYCourses} />
               <Route path="/jalasat" exact component={JalasatPage} />
               <Route path="/profile" exact component={ProfilePage} />
+              <Route path="/guides" exact component={GuidePage} />
               <Route path="/not-found" component={NotFound} />
               <Redirect to="/not-found" />
             </Switch>

@@ -6,6 +6,8 @@ import my_courses_icon from "../../asset/images/side-bar/dashboard-icon.svg";
 import my_courses_icon_active from "../../asset/images/side-bar/dashboard-icon-active.svg";
 import finance_icon from "../../asset/images/side-bar/finance-icon.svg";
 import finance_icon_active from "../../asset/images/side-bar/finance-icon-active.svg";
+import guides_icon from "../../asset/images/side-bar/guides-icon.svg";
+import guides_icon_active from "../../asset/images/side-bar/guides-icon-active.svg";
 import arrowDown from "../../asset/images/side-bar/arrow-down.svg";
 const SideBar = () => {
   const [page_decider, set_page_decider] = useState(false);
@@ -53,7 +55,7 @@ const SideBar = () => {
                     ? my_courses_icon_active
                     : my_courses_icon
                 }
-                alt="اسم آیتم"
+                alt="درس های من"
                 className="side-bar-img"
               />
               <span className="side-text">درس های من</span>
@@ -79,7 +81,7 @@ const SideBar = () => {
                     ? profile_icon_active
                     : profile_icon
                 }
-                alt="اسم آیتم"
+                alt="اطلاعات کاربری"
                 className="side-bar-img"
               />
               <span className="side-text">اطلاعات کاربری</span>
@@ -105,32 +107,37 @@ const SideBar = () => {
                     ? finance_icon_active
                     : finance_icon
                 }
-                alt="اسم آیتم"
+                alt="امور مالی"
                 className="side-bar-img"
               />
               <span className="side-text">امور مالی</span>
             </Link>
           </li>
+          <li
+            onClick={() => {
+              set_open_close(false);
+              check_page();
+            }}
+            className={
+              page_decider === "guides"
+                ? "side-bar-item active"
+                : "side-bar-item"
+            }
+          >
+            <Link className="link-side-bar" to="/guides">
+              <span className="img-wrapper">
+                <img
+                  src={
+                    page_decider === "guides" ? guides_icon_active : guides_icon
+                  }
+                  alt="آموزش ها"
+                  className="side-bar-img"
+                />
+              </span>
+              <span className="side-text">آموزش ها</span>
+            </Link>
+          </li>
           {/*<li
-          onClick={()=>{
-            set_open_close(false)
-            check_page()}}
-          className={
-            page_decider === "" ? "side-bar-item active" : "side-bar-item"
-          }
-        >
-          <Link className="link-side-bar" to="/my-courses">
-            <img
-              width={24}
-              height={24}
-              src={side_bar_img_1}
-              alt="اسم آیتم"
-              className="side-bar-img"
-            />
-            <span className="side-text">میزکار</span>
-          </Link>
-        </li>
-        <li
           onClick={()=>{
             set_open_close(false)
             check_page()}}

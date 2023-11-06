@@ -40,6 +40,7 @@ const Login = () => {
                 });
             } else {
               const pass_err = "پسورد وارد شده صحیح نمی باشد";
+              setPause(false);
               setPass_err(pass_err);
             }
           } else {
