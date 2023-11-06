@@ -32,8 +32,8 @@ function App() {
               <Route path="/my-courses" exact component={MYCourses} />
               <Route path="/jalasat" exact component={JalasatPage} />
               <Route path="/profile" exact component={ProfilePage} />
-              <Route path="/" component={MYCourses} />
               <Route path="/not-found" component={NotFound} />
+              <Route path="/" component={Login} />
               <Redirect to="/not-found" />
             </Switch>
           </div>

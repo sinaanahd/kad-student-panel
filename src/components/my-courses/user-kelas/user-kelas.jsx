@@ -3,6 +3,8 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import scroll_to_top from "../../functions/scroll";
 import { DataContext } from "../../data/datacontext";
 import LittleLoading from "../../reuseables/little-loading";
+import convert_days from "../../functions/convert-days";
+import convert_to_persian from "../../functions/convert-to-persian";
 const User_kelas = ({ kelas }) => {
   const { jalasat, user } = useContext(DataContext);
   const [class_time, set_class_time] = useState(false);
@@ -33,7 +35,9 @@ const User_kelas = ({ kelas }) => {
     const today = new Date();
     const day = today.toLocaleDateString("en", { weekday: "long" });
     const hour = today.getHours();
+    // const hour = 16;
     const minutes = today.getMinutes();
+    // const minutes = 16;
     const today_class_time = {
       ...kelas.stream_plans.find((time) => time.week_day_english === day),
     };
@@ -43,7 +47,9 @@ const User_kelas = ({ kelas }) => {
       start_time = parseInt(start_time.split(":")[0]);
       finish_time = parseInt(finish_time.split(":")[0]);
       if (start_time * 60 + start_minute - (hour * 60 + minutes) < 15) {
-        return true;
+        if (hour <= finish_time) {
+          return true;
+        }
       } else {
         return false;
       }
@@ -113,8 +119,42 @@ const User_kelas = ({ kelas }) => {
                 )}
               </span>
               <span className="session-date-data">
-                <span className="week-day">چهارشنبه</span>
-                <span className="week-time">۱۰-۱۲</span>
+                {jalasat ? (
+                  jalasat.findLast(
+                    (j) => j.parent_kelas_id === kelas.kelas_id
+                  ) ? (
+                    <>
+                      <span className="week-day">
+                        {convert_days(
+                          jalasat.findLast(
+                            (j) => j.parent_kelas_id === kelas.kelas_id
+                          ).week_day_name
+                        )}
+                      </span>
+                      <span className="week-time">
+                        {convert_to_persian(
+                          jalasat
+                            .findLast(
+                              (j) => j.parent_kelas_id === kelas.kelas_id
+                            )
+                            .start_time.split(":")[0]
+                        )}
+                        -
+                        {convert_to_persian(
+                          jalasat
+                            .findLast(
+                              (j) => j.parent_kelas_id === kelas.kelas_id
+                            )
+                            .finish_time.split(":")[0]
+                        )}
+                      </span>
+                    </>
+                  ) : (
+                    "آفلاین"
+                  )
+                ) : (
+                  <LittleLoading />
+                )}
               </span>
             </span>
             {kelas.parent_dore_id !== 6 ? (

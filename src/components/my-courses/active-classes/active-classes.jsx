@@ -25,7 +25,9 @@ const ActiveClasses = () => {
       start_time = parseInt(start_time.split(":")[0]);
       finish_time = parseInt(finish_time.split(":")[0]);
       if (start_time * 60 + start_minute - (hour * 60 + minutes) < 15) {
-        return true;
+        if (hour <= finish_time) {
+          return true;
+        }
       } else {
         return false;
       }
@@ -37,43 +39,47 @@ const ActiveClasses = () => {
     <section className="active-classes">
       <div className="box-header">
         <h2 className="box-title">درحال برگزاری</h2>
-        <div className="filters-wrapper">
+        {/* <div className="filters-wrapper">
           <span className="filter-btn active">کلاس‌های رایگان</span>
           <span className="filter-btn">ثبت نام شده</span>
-        </div>
+        </div> */}
       </div>
       <div className="live-classes-wrapper">
-        {kelasses
-          ? find_active_classes().length !== 0
-            ? find_active_classes().map((k) => (
-                <div className="live-class" key={k.kelas_id}>
-                  <img
-                    src={k.image_link}
-                    alt={k.kelas_title}
-                    width={131}
-                    height={131}
-                  />
-                  <div className="class-text-details">
-                    <span className="names-wrapper">
-                      <span className="class-name">{k.kelas_title}</span>
-                      <span className="class-teacher">
-                        {"استاد " +
-                          k.kelas_title_and_ostad_name.split("استاد")[1]}
-                      </span>
+        {kelasses ? (
+          find_active_classes().length !== 0 ? (
+            find_active_classes().map((k) => (
+              <div className="live-class" key={k.kelas_id}>
+                <img
+                  src={k.image_link}
+                  alt={k.kelas_title}
+                  width={131}
+                  height={131}
+                />
+                <div className="class-text-details">
+                  <span className="names-wrapper">
+                    <span className="class-name">{k.kelas_title}</span>
+                    <span className="class-teacher">
+                      {"استاد " +
+                        k.kelas_title_and_ostad_name.split("استاد")[1]}
                     </span>
-                    <a
-                      target="_blank"
-                      href={k.skyRoom_link}
-                      className="enter-class-btn"
-                    >
-                      ورود به کلاس
-                    </a>
-                    <span className="live-label">زنده</span>
-                  </div>
+                  </span>
+                  <a
+                    target="_blank"
+                    href={k.skyRoom_link}
+                    className="enter-class-btn"
+                  >
+                    ورود به کلاس
+                  </a>
+                  <span className="live-label">زنده</span>
                 </div>
-              ))
-            : "کلاس آنلاینی نیست"
-          : "کلاس آنلاینی نیست"}
+              </div>
+            ))
+          ) : (
+            <span className="no-class">کلاسی در حال برگزاری نیست !</span>
+          )
+        ) : (
+          <span className="no-class">کلاسی در حال برگزاری نیست !</span>
+        )}
 
         {/* <div className="live-class">
           <img

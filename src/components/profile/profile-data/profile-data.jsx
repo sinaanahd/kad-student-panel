@@ -359,6 +359,39 @@ const ProfileData = () => {
           ثبت
         </span>
       )}
+      {name_err ||
+      address_err ||
+      home_number_err ||
+      subject_err ||
+      grade_err ||
+      day_err ||
+      month_err ||
+      year_err ? (
+        <div className="info-err-box responsive">
+          {name_err ? <span className="info-err">{name_err}</span> : <></>}
+          {address_err ? (
+            <span className="info-err">{address_err}</span>
+          ) : (
+            <></>
+          )}
+          {home_number_err ? (
+            <span className="info-err">{home_number_err}</span>
+          ) : (
+            <></>
+          )}
+          {subject_err ? (
+            <span className="info-err">{subject_err}</span>
+          ) : (
+            <></>
+          )}
+          {grade_err ? <span className="info-err">{grade_err}</span> : <></>}
+          {day_err ? <span className="info-err">{day_err}</span> : <></>}
+          {month_err ? <span className="info-err">{month_err}</span> : <></>}
+          {year_err ? <span className="info-err">{year_err}</span> : <></>}
+        </div>
+      ) : (
+        <></>
+      )}
     </section>
   );
 };

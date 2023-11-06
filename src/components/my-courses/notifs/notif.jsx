@@ -23,8 +23,8 @@ const NotifPart = () => {
       <div className="notices-wrapper">
         {user && kelasses ? (
           disabled_classes_finder().length !== 0 ? (
-            disabled_classes_finder().map((k) => (
-              <div className="notif-item" key={k.kelas_id}>
+            disabled_classes_finder().map((k, i) => (
+              <div className="notif-item" key={i++}>
                 <span className="notuf-title">
                   قطع دسترسی کلاس{" "}
                   {kelasses.find((kelas) => kelas.kelas_id === k).kelas_title} :

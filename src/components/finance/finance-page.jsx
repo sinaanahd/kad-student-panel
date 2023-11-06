@@ -1,10 +1,29 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
 import LittleLoading from "../reuseables/little-loading";
-import spilit_in_three from "../functions/spilit_in_three";
-import convert_to_persian from "../functions/convert-to-persian";
+import Factor from "./factor/factor";
+import InPayQeue from "./in-pay-qeue/in-pay-qeue";
+import Debt from "./debt-box/debt";
 const FinancePage = () => {
+  const { user, pay_info, get_info } = useContext(DataContext);
+  const in_qeues = pay_info
+    ? pay_info.filter((pi) => !pi.pay_date).reverse()
+    : [];
+  const check_total_debt = (arr) => {
+    let sum = 0;
+    if (arr.length !== 0) {
+      arr.forEach((item) => {
+        sum += item.price;
+      });
+    }
+    return sum;
+  };
+  useEffect(() => {
+    if (user) {
+      get_info(user.user_id);
+    }
+  }, []);
   return (
     <>
       <Helmet>
@@ -19,111 +38,19 @@ const FinancePage = () => {
             <span className="factor-item">تایخ و زمان آخرین پرداخت</span>
             <span className="factor-item last-col"></span>
           </div>
-          <div className="factor-row">
-            <span className="factor-item first-col">ریاضی دهم</span>
-            <span className="factor-item">نقدی</span>
-            <span className="factor-item">
-              {spilit_in_three(convert_to_persian(12000000))} تومان
-            </span>
-            <span className="factor-item">
-              <span className="inside-item">۱۴۰۲/۰۹/۱۸</span>
-              <span className="inside-item">۱۳:۲۳:۱۲</span>
-            </span>
-            <span className="factor-item last-col">
-              <span className="show-detials-btn">مشاهده جزئیات</span>
-            </span>
-          </div>
-          <div className="factor-row">
-            <span className="factor-item first-col">ریاضی دهم</span>
-            <span className="factor-item">نقدی</span>
-            <span className="factor-item">
-              {spilit_in_three(convert_to_persian(12000000))} تومان
-            </span>
-            <span className="factor-item">
-              <span className="inside-item">۱۴۰۲/۰۹/۱۸</span>
-              <span className="inside-item">۱۳:۲۳:۱۲</span>
-            </span>
-            <span className="factor-item last-col">
-              <span className="show-detials-btn">مشاهده جزئیات</span>
-            </span>
-          </div>
-          <div className="factor-row">
-            <span className="factor-item first-col">ریاضی دهم</span>
-            <span className="factor-item">نقدی</span>
-            <span className="factor-item">
-              {spilit_in_three(convert_to_persian(12000000))} تومان
-            </span>
-            <span className="factor-item">
-              <span className="inside-item">۱۴۰۲/۰۹/۱۸</span>
-              <span className="inside-item">۱۳:۲۳:۱۲</span>
-            </span>
-            <span className="factor-item last-col">
-              <span className="show-detials-btn">مشاهده جزئیات</span>
-            </span>
-          </div>
+          {pay_info ? (
+            pay_info.length !== 0 ? (
+              pay_info.map((p, i) => <Factor key={i++} factor={p} />)
+            ) : (
+              "موردی برای نمایش وجود ندارد"
+            )
+          ) : (
+            <LittleLoading />
+          )}
         </section>
         <div className="second-row">
-          <section className="total-pay-amount">
-            <span className="total-title">میزان بدهی</span>
-            <span className="total-amount">
-              <span className="num">
-                {spilit_in_three(convert_to_persian(120000000))}
-              </span>
-              <span className="currency">تومان</span>
-            </span>
-            <span className="pay-all-bills-btn">تسویه حساب</span>
-          </section>
-          <section className="wait-to-be-paid">
-            <span className="wait-title">در انتظار پرداخت</span>
-            <div className="next-pays-box">
-              <div className="next-pay-header">
-                <span className="next-pay-item pay-first-col">کلاس (ها)</span>
-                <span className="next-pay-item">شماره قسط</span>
-                <span className="next-pay-item">میزان پرداختی</span>
-                <span className="next-pay-item">موعد پرداخت</span>
-                <span className="next-pay-item pay-last-col"></span>
-              </div>
-              <div className="next-pay-row">
-                <span className="next-pay-item pay-first-col">
-                  فلسفه و منطق
-                </span>
-                <span className="next-pay-item">قسط سوم</span>
-                <span className="next-pay-item">
-                  {spilit_in_three(convert_to_persian(120000))} تومان
-                </span>
-                <span className="next-pay-item">۱۴۰۲/۰۹/۱۸</span>
-                <span className="next-pay-item pay-last-col">
-                  <span className="pay-ghest-btn">پرداخت</span>
-                </span>
-              </div>
-              <div className="next-pay-row">
-                <span className="next-pay-item pay-first-col">
-                  فلسفه و منطق
-                </span>
-                <span className="next-pay-item">قسط سوم</span>
-                <span className="next-pay-item">
-                  {spilit_in_three(convert_to_persian(120000))} تومان
-                </span>
-                <span className="next-pay-item">۱۴۰۲/۰۹/۱۸</span>
-                <span className="next-pay-item pay-last-col">
-                  <span className="pay-ghest-btn">پرداخت</span>
-                </span>
-              </div>
-              <div className="next-pay-row">
-                <span className="next-pay-item pay-first-col">
-                  فلسفه و منطق
-                </span>
-                <span className="next-pay-item">قسط سوم</span>
-                <span className="next-pay-item">
-                  {spilit_in_three(convert_to_persian(120000))} تومان
-                </span>
-                <span className="next-pay-item">۱۴۰۲/۰۹/۱۸</span>
-                <span className="next-pay-item pay-last-col">
-                  <span className="pay-ghest-btn">پرداخت</span>
-                </span>
-              </div>
-            </div>
-          </section>
+          <Debt in_qeues={in_qeues} />
+          <InPayQeue in_qeues={in_qeues} />
         </div>
       </div>
     </>

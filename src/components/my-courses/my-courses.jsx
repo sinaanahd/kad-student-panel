@@ -8,18 +8,53 @@ import ActiveClasses from "./active-classes/active-classes";
 import NotifPart from "./notifs/notif";
 const MYCourses = () => {
   const { user, kelasses } = useContext(DataContext);
+  const [filtered_classes, set_filtered_classess] = useState([]);
+  const [active_filter, set_active_filter] = useState(false);
   const fill_classes = () => {
-    const kelas_ids = user.kelases;
-    // console.log(kelas_ids, kelasses);
-    const all_kelasses = [];
-    kelas_ids.forEach((k_id) => {
-      const kelas = kelasses.find((k) => k.kelas_id === k_id);
-      if (kelas) {
-        all_kelasses.push(kelas);
+    if (!active_filter || active_filter === "all") {
+      const kelas_ids = user.kelases;
+      const all_kelasses = [];
+      kelas_ids.forEach((k_id) => {
+        const kelas = kelasses.find((k) => k.kelas_id === k_id);
+        if (kelas) {
+          all_kelasses.push(kelas);
+        }
+      });
+      return all_kelasses;
+    } else {
+      return filtered_classes;
+    }
+  };
+
+  const handle_class_filter = (type) => {
+    set_active_filter(type);
+    switch (type) {
+      case "all":
+        set_filtered_classess(kelasses);
+        break;
+      case "today": {
+        const day_name = new Date().toLocaleDateString("en", {
+          weekday: "long",
+        });
+        const filtered = kelasses.filter((k) =>
+          k.stream_plans.length !== 0
+            ? k.stream_plans[0].week_day_english === day_name
+            : false
+        );
+        set_filtered_classess(filtered);
+        break;
       }
-    });
-    // console.log(all_kelasses);
-    return all_kelasses;
+      case "no-acc": {
+        const no_acc_ids = [
+          ...user.kelases222.map((k) => (!k.has_access ? k.kelas_id : false)),
+        ];
+        const filtered = kelasses.filter((k) =>
+          no_acc_ids.includes(k.kelas_id)
+        );
+        set_filtered_classess(filtered);
+        break;
+      }
+    }
   };
   return (
     <>
@@ -35,10 +70,41 @@ const MYCourses = () => {
           <div className="box-header">
             <h2 className="box-title">تمامی کلاس ها</h2>
             <div className="filters-wrapper">
-              <span className="filter-btn active">همه</span>
-              <span className="filter-btn">امروز</span>
-              <span className="filter-btn">کلاس های هدیه</span>
-              <span className="filter-btn">ثبت نام شده</span>
+              <span
+                className={
+                  active_filter === "all" || !active_filter
+                    ? "filter-btn active"
+                    : "filter-btn"
+                }
+                onClick={() => {
+                  handle_class_filter("all");
+                }}
+              >
+                همه
+              </span>
+              <span
+                className={
+                  active_filter === "today" ? "filter-btn active" : "filter-btn"
+                }
+                onClick={() => {
+                  handle_class_filter("today");
+                }}
+              >
+                امروز
+              </span>
+              {/* <span className={active_filter === "" ? "filter-btn active" : "filter-btn"}>کلاس های هدیه</span> */}
+              <span
+                className={
+                  active_filter === "no-acc"
+                    ? "filter-btn active"
+                    : "filter-btn"
+                }
+                onClick={() => {
+                  handle_class_filter("no-acc");
+                }}
+              >
+                بدون دسترسی
+              </span>
             </div>
           </div>
           <div className="all-classes">
