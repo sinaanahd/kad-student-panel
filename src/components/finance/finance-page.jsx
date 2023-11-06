@@ -10,15 +10,7 @@ const FinancePage = () => {
   const in_qeues = pay_info
     ? pay_info.filter((pi) => !pi.pay_date).reverse()
     : [];
-  const check_total_debt = (arr) => {
-    let sum = 0;
-    if (arr.length !== 0) {
-      arr.forEach((item) => {
-        sum += item.price;
-      });
-    }
-    return sum;
-  };
+
   useEffect(() => {
     if (user) {
       get_info(user.user_id);

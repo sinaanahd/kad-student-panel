@@ -43,12 +43,17 @@ const User_kelas = ({ kelas }) => {
     };
     if (Object.keys(today_class_time).length !== 0) {
       let { start_time, finish_time } = today_class_time;
+      const finish_minutes = finish_time.split(":")[1];
       const start_minute = parseInt(start_time.split(":")[1]);
       start_time = parseInt(start_time.split(":")[0]);
       finish_time = parseInt(finish_time.split(":")[0]);
       if (start_time * 60 + start_minute - (hour * 60 + minutes) < 15) {
-        if (hour <= finish_time) {
+        if (hour === finish_time && minutes <= finish_minutes) {
           return true;
+        } else if (hour < finish_time) {
+          return true;
+        } else if (hour === finish_time && minutes > finish_minutes) {
+          return false;
         }
       } else {
         return false;

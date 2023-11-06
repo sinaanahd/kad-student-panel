@@ -8,9 +8,9 @@ import arrow from "../../asset/images/login/arrow-vector.svg";
 
 const SignUp = () => {
   useEffect(() => {
-    if (user) {
-      window.location.pathname = "/my-courses";
-    }
+    // if (user) {
+    //   window.location.pathname = "/my-courses";
+    // }
   }, []);
   const { setUser, subjects, years, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
@@ -75,7 +75,7 @@ const SignUp = () => {
         )
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           setPause(false);
           if (been_before) {
             set_user_data(user_id);

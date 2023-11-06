@@ -1,6 +1,6 @@
 import "./asset/css/index.scss";
 import { Route , Switch ,Redirect ,BrowserRouter} from 'react-router-dom/cjs/react-router-dom.min';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DataContext } from './components/data/datacontext';
 import MYCourses from './components/my-courses/my-courses';
 import JalasatPage from './components/jalasat/jalasat-page';
@@ -17,10 +17,26 @@ import Forget_pass from "./components/forget-pass/forget-pass";
 
 function App() {
   const {user} = useContext(DataContext);
+  useEffect(()=>{
+    const slug = window.location.pathname
+    if(!user){
+      if(slug === "/login" || slug === "/sign-up" || slug === "/login-code" || slug === "/forget-pass" || slug === "" || slug === "/"){
+        //  window.location.pathname = "/my-courses";
+      }
+      else{
+        window.location.pathname = "/login";
+      }
+    }else{
+      if(slug === "/login" || slug === "/sign-up" || slug === "/login-code" || slug === "/forget-pass" || slug === "" || slug === "/"){
+        window.location.pathname = "/my-courses";
+      }
+    }
+    
+  },[])
   return (
     <>
     <BrowserRouter>
-    {window.location.pathname !== "/login" && window.location.pathname !== "/login-code" && window.location.pathname !== "/sign-up" && window.location.pathname !== "/forget-pass" ? <>
+    {window.location.pathname !== "/" && window.location.pathname !== ""  && window.location.pathname !== "/login" && window.location.pathname !== "/login-code" && window.location.pathname !== "/sign-up" && window.location.pathname !== "/forget-pass" ? <>
     <Header user={user}/>
         <div className="page-wrapper">
           <SideBar />
@@ -33,7 +49,6 @@ function App() {
               <Route path="/jalasat" exact component={JalasatPage} />
               <Route path="/profile" exact component={ProfilePage} />
               <Route path="/not-found" component={NotFound} />
-              <Route path="/" component={Login} />
               <Redirect to="/not-found" />
             </Switch>
           </div>
@@ -44,6 +59,7 @@ function App() {
               <Route path="/login-code" exact component={LoginCode} />
               <Route path="/sign-up" exact component={SignUp} />
               <Route path="/forget-pass" exact component={Forget_pass} />
+              <Route path="/" component={Login} />
             </Switch>
     </> }
         

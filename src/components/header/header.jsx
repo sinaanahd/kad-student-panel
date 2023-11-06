@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LittleLoading from "../reuseables/little-loading";
 
-import avatar from "../../asset/images/header/avatar.png";
+import avatar from "../../asset/images/header/avatar.jpg";
 import arrow_down from "../../asset/images/header/arrow_drop_down.svg";
 import notif_icon from "../../asset/images/header/bell.svg";
 import { Link } from "react-router-dom/cjs/react-router-dom";

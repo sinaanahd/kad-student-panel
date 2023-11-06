@@ -5,9 +5,9 @@ import { DataContext } from "../data/datacontext";
 import axios from "axios";
 const Forget_pass = () => {
   useEffect(() => {
-    if (user) {
-      window.location.pathname = "/my-courses";
-    }
+    // if (user) {
+    //   window.location.pathname = "/my-courses";
+    // }
   }, []);
   const { setUser, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
@@ -57,7 +57,7 @@ const Forget_pass = () => {
         )
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           setPause(false);
           if (been_before) {
             set_user_data(user_id);
@@ -108,7 +108,7 @@ const Forget_pass = () => {
         )
         .then((res) => {
           const { status, message } = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           if (status) {
             alert(message);
             window.location.pathname = "/login";

@@ -38,7 +38,8 @@ const MYCourses = () => {
         });
         const filtered = kelasses.filter((k) =>
           k.stream_plans.length !== 0
-            ? k.stream_plans[0].week_day_english === day_name
+            ? k.stream_plans[0].week_day_english === day_name &&
+              user.kelases.includes(k.kelas_id)
             : false
         );
         set_filtered_classess(filtered);

@@ -55,8 +55,8 @@ const DataProvider = ({ children }) => {
   useEffect(() => {
     const is_time = last_login_check(last_login, this_time_login);
     if (is_time) {
+      // console.log("is time");
       if (user) {
-        get_user(user.user_id);
         get_info(user.user_id);
       }
       get_kelasses();
@@ -72,9 +72,14 @@ const DataProvider = ({ children }) => {
       if (!sample_files_data) {
         get_sample_files();
       }
-      if (!pay_info_data) {
-        get_info();
+      if (user) {
+        if (!pay_info_data) {
+          get_info(user.user_id);
+        }
       }
+    }
+    if (user) {
+      get_user(user.user_id);
     }
   }, []);
   const get_teachers = () => {

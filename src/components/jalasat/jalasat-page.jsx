@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import LittleLoading from "../reuseables/little-loading";
 import { DataContext } from "../data/datacontext";
@@ -7,6 +7,12 @@ import convert_to_persian from "../functions/convert-to-persian";
 import convert_days from "../functions/convert-days";
 import JalaseDetials from "./jalase-detials/jalase-detials";
 const JalasatPage = () => {
+  useEffect(() => {
+    const slug_id = parseInt(window.location.pathname.split("/")[2]);
+    if (!user.kelases.includes(slug_id)) {
+      window.location.pathname = "/my-courses";
+    }
+  }, []);
   const { kelasses, user, jalasat } = useContext(DataContext);
   const [active_jalase, set_active_jalase] = useState(
     jalasat ? jalasat[0] : false

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { DataContext } from "../../data/datacontext";
 const ActiveClasses = () => {
-  const { kelasses } = useContext(DataContext);
+  const { kelasses, user } = useContext(DataContext);
   const find_active_classes = (e) => {
     const live_classes = [];
     kelasses.forEach((k) => {
-      if (active_kelas_show(k)) {
+      if (active_kelas_show(k) && user.kelases.includes(k.kelas_id)) {
         live_classes.push(k);
       }
     });
@@ -22,11 +22,18 @@ const ActiveClasses = () => {
     if (Object.keys(today_class_time).length !== 0) {
       let { start_time, finish_time } = today_class_time;
       const start_minute = parseInt(start_time.split(":")[1]);
+      const finish_minutes = finish_time.split(":")[1];
       start_time = parseInt(start_time.split(":")[0]);
       finish_time = parseInt(finish_time.split(":")[0]);
       if (start_time * 60 + start_minute - (hour * 60 + minutes) < 15) {
         if (hour <= finish_time) {
-          return true;
+          if (hour === finish_time && minutes <= finish_minutes) {
+            return true;
+          } else if (hour < finish_time) {
+            return true;
+          } else if (hour === finish_time && minutes > finish_minutes) {
+            return false;
+          }
         }
       } else {
         return false;
@@ -45,7 +52,7 @@ const ActiveClasses = () => {
         </div> */}
       </div>
       <div className="live-classes-wrapper">
-        {kelasses ? (
+        {kelasses && user ? (
           find_active_classes().length !== 0 ? (
             find_active_classes().map((k) => (
               <div className="live-class" key={k.kelas_id}>

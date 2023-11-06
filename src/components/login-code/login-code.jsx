@@ -7,9 +7,9 @@ import { DataContext } from "../data/datacontext";
 
 const LoginCode = () => {
   useEffect(() => {
-    if (user) {
-      window.location.pathname = "/my-courses";
-    }
+    // if (user) {
+    //   window.location.pathname = "/my-courses";
+    // }
   }, []);
   const { setUser, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
