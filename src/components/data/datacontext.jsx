@@ -52,6 +52,18 @@ const DataProvider = ({ children }) => {
       name: "فارغ التحصیل",
     },
   ];
+  const doreha = [
+    {
+      dore_id: 5,
+      dore_title: "سالانه",
+      slug_name: "سالانه",
+    },
+    {
+      dore_id: 6,
+      dore_title: "آفلاین",
+      slug_name: "آفلاین",
+    },
+  ];
   useEffect(() => {
     const is_time = last_login_check(last_login, this_time_login);
     if (is_time) {
@@ -166,6 +178,7 @@ const DataProvider = ({ children }) => {
         sample_files,
         pay_info,
         get_info,
+        doreha,
       }}
     >
       {children}

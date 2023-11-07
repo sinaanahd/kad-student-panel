@@ -437,7 +437,6 @@ body {
         font-weight: bold;
         width: 100%;
         @include flexMixin(column,flex-start,center);
-        overflow: scroll;
         height: 45px;
     }
     .main-class-teacher{
@@ -538,6 +537,7 @@ body {
         font-weight: bold;
         margin-left: 5px;
     }
+    
 }
 
 .jalasat-page{
@@ -1227,12 +1227,12 @@ body {
         width: 157px;
         height: 31px;
         border-radius: 12px;
-        background: rgba(166, 103, 202, 0.20);
+        background: $color-4;
         font-size: 15px;
         @include flexMixin(row,center,center);
         cursor: pointer;
         transition: $transition;
-        border: 2px solid rgba(166, 103, 202, 0.20);
+        border: 2px solid $color-4;
         color: #000;
         &:hover{
             background-color: #fff;
@@ -1322,10 +1322,10 @@ body {
         cursor: pointer;
         height: 30px;
         border-radius: 5px;
-        background: rgba(166, 103, 202, 0.20);
+        background: $color-4;
         padding: 2px 20px 0;
         width: 100%;
-        border: 1px solid rgba(166, 103, 202, 0.20);
+        border: 1px solid $color-4;
         @include flexMixin(row,center,center);
     }
     .sina{
@@ -1354,6 +1354,224 @@ body {
         }
     }
 }
+
+.dashboard-page{
+    width: 100%;
+    @include flexMixin(column,flex-start,flex-start);
+    gap: 25px;
+    .banners-wrapper{
+        width: 100%;
+    }
+    .new-classes-wrapper{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        gap: 25px;
+        background-color: #fff;
+        border-radius: 20px;
+        max-width: 959px;
+        padding: 32px 30px 18px;
+    }
+    .title{
+        font-size: 21px;
+        width: 100%;
+    }
+    .classes-wrapper{
+        width: 100%;
+        @include flexMixin(row,flex-start,center);
+        gap: 20px;
+        overflow-x: scroll;
+    }
+    .class-wrapper{
+        flex: 0 0 315px;
+        height: 200px;
+        @include flexMixin(row,flex-start,center);
+        color: #fff;
+        background-color: $color-3;
+        border-radius: 15px;
+        padding: 13px 17px;
+        gap: 13px;
+        transition: $transition;
+    }
+    .right-contents{
+        @include flexMixin(column,flex-start,center);
+        gap: 20px;
+        flex: 0 0 126px;
+        img{
+            border-radius: 14px;
+        }
+    }
+    .left-contents{
+        @include flexMixin(column,flex-start,flex-start);
+        width: 100%;
+        position: relative;
+        height: 100%;
+        padding: 10px 0 0;
+    }
+    .class-name{
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .teachers-name{
+        font-size: 14px;
+        margin: 2px 0 0;
+    }
+    .price-decieder{
+        width: 100%;
+        @include flexMixin(column,flex-start,flex-start);
+    }
+    .price-label{
+        font-size: 14px;
+        margin: 17px 0 0;
+    }
+    .price-num{
+        font-size: 15px;
+        @include flexMixin(row,flex-end,center);
+        width: 100%;
+    }
+    .normal-price{
+        font-weight: bold;
+        margin-top: -3px;
+    }
+    .add-to-cart{
+        width: 100%;
+        height: 28px;
+        border-radius: 37px;
+        background-color: $color-2;
+        color: #fff;
+        @include flexMixin(row,center,center);
+        margin: 12px 0 0;
+        padding: 2px 0 0;
+        position: absolute;
+        bottom: 0px;
+    }
+    .dore-label{
+        width: 100%;
+        @include flexMixin(row,center,center);
+        height: 28px;
+        border-radius: 5px;
+        background-color: #FFAF18;
+        padding: 2px 0 0;
+    }
+    .dots-wrapper{
+        padding: 0 20px;
+        height: 24px;
+        background-color: #ede1f4;
+        @include flexMixin(row,center,center);
+        gap: 5px;
+        border-radius: 12px;
+    }
+    .dot{
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: rgba(166, 103, 202, 0.50);;
+    }
+    .dot.active{
+        background-color: $color-2;
+    }
+    .calender-wrapper {
+        max-width: 959px;
+        width: 100%;
+        @include flexMixin(column, flex-start, center);
+        gap: 60px;
+        padding: 34px 27px;
+        background-color: #fff;
+        border-radius: 20px;
+    }
+    .cal-title-wrapper{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+    }
+    .filter-options{
+        width: 100%;
+        @include flexMixin(row,flex-end,center);
+        font-size: 13px;
+        gap: 10px;
+    }
+    .filter-option{
+        padding: 0 10px;
+        height: 30px;
+        border-radius: 5px;
+        @include flexMixin(row,center,center);
+        border: 1px solid $color-2;
+        color: #000;
+        cursor: pointer;
+        transition: $transition;
+        cursor: pointer;
+        &:hover{
+            background-color: $color-2;
+            color: #fff;
+        }
+    }
+    .filter-option.active{
+        background-color: $color-2;
+        color: #fff;
+    }
+    .calender-box{
+        width: 100%;
+        @include flexMixin(column,flex-start,center);
+        font-size: 12px;
+    }
+    .cal-header , .cal-row{
+        width: 100%;
+        @include flexMixin(row,space-between,center);
+        *{
+            flex: 1;
+        }
+        border-bottom: 1px solid $color-2;
+    }
+    .active-day{
+        background-color: $color-2;
+        color: #fff;
+    }
+    .cal-header{
+        border-bottom: 1px solid $color-2;
+        font-weight: bold;
+        .cal-item{
+            height: 40px;
+        }
+    }
+    .cal-item{
+        border-left: 1px solid $color-2;
+        text-align: center;
+    }
+    .last-col{
+        border-left: 0px solid $color-2;
+    }
+    .cal-item{
+        @include flexMixin(row,center,center);
+        width: 100%;
+        height: 98px;
+        padding: 5px;
+    }
+    .first-col{
+        font-weight: bold;
+    }
+    .class-with-session{
+        width: 100%;
+        height: 100%;
+        @include flexMixin(column,center,center);
+        font-size: 13px;
+        background-color: $color-2;
+        color: #fff;
+        border-radius: 14px;
+        border: 2px solid $color-2;
+        *{
+            flex: unset;
+        }
+        font-weight: bold;
+    }
+    .not-active.class-with-session{
+        background-color: #fff;
+        color: $color-2;
+    }
+    .cal-session-name{
+        margin-top: 3px;
+        font-size: 12px;
+    }
+}
+
 
 
 .guide-page{
