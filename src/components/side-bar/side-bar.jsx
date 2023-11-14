@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import profile_icon from "../../asset/images/side-bar/profile-icon.svg";
 import profile_icon_active from "../../asset/images/side-bar/profile-icon-active.svg";
-import my_courses_icon from "../../asset/images/side-bar/dashboard-icon.svg";
-import my_courses_icon_active from "../../asset/images/side-bar/dashboard-icon-active.svg";
+import my_courses_icon from "../../asset/images/side-bar/mycourses-icon.svg";
+import my_courses_icon_active from "../../asset/images/side-bar/mycourses-icon-active.svg";
 import finance_icon from "../../asset/images/side-bar/finance-icon.svg";
 import finance_icon_active from "../../asset/images/side-bar/finance-icon-active.svg";
 import guides_icon from "../../asset/images/side-bar/guides-icon.svg";
 import guides_icon_active from "../../asset/images/side-bar/guides-icon-active.svg";
+import dashboard_icon from "../../asset/images/side-bar/dashboard-icon.svg";
+import dashboard_icon_active from "../../asset/images/side-bar/dashboard-icon-active.svg";
 import arrowDown from "../../asset/images/side-bar/arrow-down.svg";
 const SideBar = () => {
   const [page_decider, set_page_decider] = useState(false);
@@ -35,6 +37,32 @@ const SideBar = () => {
         className={open_close ? "side-bar-wrapper open" : "side-bar-wrapper"}
       >
         <ul className="side-bar-items">
+          <li
+            onClick={() => {
+              set_open_close(false);
+              check_page();
+            }}
+            className={
+              page_decider === "dashboard"
+                ? "side-bar-item active"
+                : "side-bar-item"
+            }
+          >
+            <Link className="link-side-bar" to="/dashboard">
+              <img
+                width={24}
+                height={24}
+                src={
+                  page_decider === "dashboard"
+                    ? dashboard_icon_active
+                    : dashboard_icon
+                }
+                alt="اسم آیتم"
+                className="side-bar-img"
+              />
+              <span className="side-text">میزکار</span>
+            </Link>
+          </li>
           <li
             onClick={() => {
               set_open_close(false);
@@ -137,63 +165,55 @@ const SideBar = () => {
               <span className="side-text">آموزش ها</span>
             </Link>
           </li>
-          {/*<li
-          onClick={()=>{
-            set_open_close(false)
-            check_page()}}
-          className={
-            page_decider === "" ? "side-bar-item active" : "side-bar-item"
-          }
-        >
-          <Link className="link-side-bar" to="/my-courses">
-            <img
-              width={24}
-              height={24}
-              src={side_bar_img_1}
-              alt="اسم آیتم"
-              className="side-bar-img"
-            />
-            <span className="side-text">آموزش</span>
-          </Link>
-        </li>
-        <li
-          onClick={()=>{
-            set_open_close(false)
-            check_page()}}
-          className={
-            page_decider === "" ? "side-bar-item active" : "side-bar-item"
-          }
-        >
-          <Link className="link-side-bar" to="/my-courses">
-            <img
-              width={24}
-              height={24}
-              src={side_bar_img_1}
-              alt="اسم آیتم"
-              className="side-bar-img"
-            />
-            <span className="side-text">خرید درس</span>
-          </Link>
-        </li>
-        <li
-          onClick={()=>{
-            set_open_close(false)
-            check_page()}}
-          className={
-            page_decider === "" ? "side-bar-item active" : "side-bar-item"
-          }
-        >
-          <Link className="link-side-bar" to="/my-courses">
-            <img
-              width={24}
-              height={24}
-              src={side_bar_img_1}
-              alt="اسم آیتم"
-              className="side-bar-img"
-            />
-            <span className="side-text">سبد خرید</span>
-          </Link>
-        </li> */}
+
+          <li
+            onClick={() => {
+              set_open_close(false);
+              check_page();
+            }}
+            className={
+              page_decider === "shop" ? "side-bar-item active" : "side-bar-item"
+            }
+          >
+            <Link className="link-side-bar" to="/shop">
+              <img
+                width={24}
+                height={24}
+                src={
+                  page_decider === "shop"
+                    ? my_courses_icon_active
+                    : my_courses_icon
+                }
+                alt="اسم آیتم"
+                className="side-bar-img"
+              />
+              <span className="side-text">خرید درس</span>
+            </Link>
+          </li>
+          <li
+            onClick={() => {
+              set_open_close(false);
+              check_page();
+            }}
+            className={
+              page_decider === "cart" ? "side-bar-item active" : "side-bar-item"
+            }
+          >
+            <Link className="link-side-bar" to="/cart">
+              <img
+                width={24}
+                height={24}
+                src={
+                  page_decider === "cart" ? profile_icon_active : profile_icon
+                }
+                alt="اسم آیتم"
+                className="side-bar-img"
+              />
+              <span className="side-text">سبد خرید</span>
+            </Link>
+          </li>
+          {/*
+           */}
         </ul>
       </aside>
     </>

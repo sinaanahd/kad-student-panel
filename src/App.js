@@ -16,6 +16,8 @@ import SignUp from "./components/sign-up/sign-up";
 import Forget_pass from "./components/forget-pass/forget-pass";
 import GuidePage from "./components/guide/guide";
 import DashboardPage from "./components/dashboard/dashboard";
+import ShopPage from "./components/shop/shop";
+import CartPage from "./components/cart/cart";
 
 function App() {
   const {user} = useContext(DataContext);
@@ -52,6 +54,8 @@ function App() {
               <Route path="/profile" exact component={ProfilePage} />
               <Route path="/guides" exact component={GuidePage} />
               <Route path="/dashboard" exact component={DashboardPage} />
+              <Route path="/shop" exact component={ShopPage} />
+              <Route path="/cart" exact component={CartPage} />
               <Route path="/not-found" component={NotFound} />
               <Redirect to="/not-found" />
             </Switch>

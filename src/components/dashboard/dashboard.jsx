@@ -7,6 +7,7 @@ import sample_banner from "../../asset/images/dashboard/sample-banner.jpg";
 import LittleLoading from "../reuseables/little-loading";
 import DashboardClass from "./dashboard-class/dashboard-class";
 import Calneder from "./calender/calender";
+import SellKelas from "../sell-kelas/sell-kelas";
 const DashboardPage = () => {
   const { kelasses, user } = useContext(DataContext);
   const [active_plan, set_active_plan] = useState("all");
@@ -16,16 +17,16 @@ const DashboardPage = () => {
         <title>میزکاربری</title>
       </Helmet>
       <div className="dashboard-page">
-        <section className="banners-wrapper">
+        {/* <section className="banners-wrapper">
           <div className="banner-item">
             <img src={sample_banner} alt="بنر" />
           </div>
-        </section>
-        <section className="new-classes-wrapper">
+        </section> */}
+        {/* <section className="new-classes-wrapper">
           <h2 className="title">کلاس های جدید</h2>
           <div className="classes-wrapper">
             {kelasses ? (
-              kelasses.map((k) => <DashboardClass kelas={k} key={k.kelas_id} />)
+              kelasses.map((k) => <SellKelas kelas={k} key={k.kelas_id} />)
             ) : (
               <LittleLoading />
             )}
@@ -36,7 +37,7 @@ const DashboardPage = () => {
             <span className="dot"></span>
             <span className="dot"></span>
           </div>
-        </section>
+        </section> */}
         <section className="calender-wrapper">
           <div className="cal-title-wrapper">
             <h2 className="title">برنامه هفتگی</h2>

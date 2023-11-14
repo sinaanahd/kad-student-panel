@@ -13,6 +13,14 @@ const this_time_login = new Date().getTime();
 const last_login = JSON.parse(localStorage.getItem("LL"))
   ? JSON.parse(localStorage.getItem("LL"))
   : this_time_login;
+const course_data = JSON.parse(localStorage.getItem("courses")) || false;
+const cart_data = JSON.parse(localStorage.getItem("cart")) || {
+  ids: [],
+  items: [],
+  pure_price: 0,
+  discounts: 0,
+  final_price: 0,
+};
 const DataContext = createContext();
 const DataProvider = ({ children }) => {
   const [user, setUser] = useState(user_data);
@@ -21,6 +29,8 @@ const DataProvider = ({ children }) => {
   const [teachers, setTeachers] = useState(teachers_data);
   const [sample_files, set_sample_files] = useState(sample_files_data);
   const [pay_info, setPay_info] = useState(pay_info_data);
+  const [courses, setCourses] = useState(course_data);
+  const [cart, set_cart] = useState(cart_data);
   const subjects = [
     { id: 0, name: "ریاضی" },
 
@@ -74,6 +84,7 @@ const DataProvider = ({ children }) => {
       get_kelasses();
       get_jalasat();
       get_sample_files();
+      get_courses();
     } else {
       if (!kelasses_data) {
         get_kelasses();
@@ -83,6 +94,9 @@ const DataProvider = ({ children }) => {
       }
       if (!sample_files_data) {
         get_sample_files();
+      }
+      if (!course_data) {
+        get_courses();
       }
       if (user) {
         if (!pay_info_data) {
@@ -164,7 +178,76 @@ const DataProvider = ({ children }) => {
       })
       .catch((e) => console.log(e.message));
   };
-
+  const get_courses = () => {
+    axios
+      .get("https://kadschool.com/backend/kad_api/courses")
+      .then((res) => {
+        const courses = res.data;
+        setCourses(courses);
+        // console.log(courses);
+        localStorage.setItem("courses", JSON.stringify(courses));
+      })
+      .catch((e) => console.log(e.message));
+  };
+  const handle_cart = (obj) => {
+    const cart_sample_obj = {
+      ids: [],
+      items: [],
+      pure_price: 0,
+      discounts: 0,
+      final_price: 0,
+    };
+    const new_cart = cart ? { ...cart } : cart_sample_obj;
+    const searched_obj = new_cart.items.find(
+      (item) => item.kelas_id === obj.kelas_id
+    );
+    if (!searched_obj) {
+      new_cart.items.push(obj);
+      new_cart.ids = get_ids(new_cart.items);
+      new_cart.pure_price = calculate_pure_price(new_cart.items);
+      new_cart.discounts = calculate_discounts(new_cart.items);
+      new_cart.final_price = new_cart.pure_price - new_cart.discounts;
+    } else {
+      const deleted_cart = delete_from_cart(new_cart, searched_obj.kelas_id);
+      new_cart.ids = get_ids(deleted_cart.items);
+      new_cart.pure_price = calculate_pure_price(new_cart.items);
+      new_cart.discounts = calculate_discounts(new_cart.items);
+      new_cart.final_price = new_cart.pure_price - new_cart.discounts;
+    }
+    finilize_cart(new_cart);
+  };
+  const delete_from_cart = (cart, id) => {
+    const index = cart.items.findIndex((item) => item.kelas_id === id);
+    const splice_need = { ...cart };
+    splice_need.items.splice(index, 1);
+    return splice_need;
+  };
+  const finilize_cart = (cart) => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    set_cart(cart);
+    // console.log(cart);
+  };
+  const get_ids = (arr) => {
+    return arr.map((i) => i.kelas_id);
+  };
+  const calculate_pure_price = (arr) => {
+    let sum = 0;
+    arr.forEach((item) => {
+      sum += item.price;
+    });
+    return sum;
+  };
+  const calculate_discounts = (arr) => {
+    let sum = 0;
+    arr.forEach((item) => {
+      let discount_amount = 0;
+      if (item.discounted_price) {
+        discount_amount = item.price - item.discounted_price;
+      }
+      sum += discount_amount;
+    });
+    return sum;
+  };
   return (
     <DataContext.Provider
       value={{
@@ -179,6 +262,9 @@ const DataProvider = ({ children }) => {
         pay_info,
         get_info,
         doreha,
+        courses,
+        cart,
+        handle_cart,
       }}
     >
       {children}

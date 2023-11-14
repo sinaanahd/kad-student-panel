@@ -27,8 +27,9 @@ const FinancePage = () => {
             <span className="factor-item first-col">کلاس (ها)</span>
             <span className="factor-item">نوع و وضعیت پرداخت</span>
             <span className="factor-item">میزان پرداختی</span>
-            <span className="factor-item">تایخ و زمان آخرین پرداخت</span>
-            <span className="factor-item last-col"></span>
+            <span className="factor-item last-col">
+              تایخ و زمان آخرین پرداخت
+            </span>
           </div>
           {pay_info ? (
             pay_info.length !== 0 ? (

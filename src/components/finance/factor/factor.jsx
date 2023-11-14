@@ -28,7 +28,7 @@ const Factor = ({ factor }) => {
         <span className="factor-item">
           {spilit_in_three(convert_to_persian(factor.price))} تومان
         </span>
-        <span className="factor-item">
+        <span className="factor-item last-col">
           {factor.pay_date ? (
             <>
               <span className="inside-item">
@@ -41,9 +41,6 @@ const Factor = ({ factor }) => {
           ) : (
             <span className="inside-item need-bold">پرداخت نشده</span>
           )}
-        </span>
-        <span className="factor-item last-col">
-          <span className="show-detials-btn">مشاهده جزئیات</span>
         </span>
       </div>
       {kelas_names ? (

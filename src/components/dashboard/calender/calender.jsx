@@ -295,7 +295,7 @@ const Calneder = ({ active_plan }) => {
             </div>
           ))
         ) : (
-          "موردی برای نمایش نیست"
+          <span className="nothing-to-show">دوست خوبم شما کلاسی نداری !</span>
         )
       ) : (
         <LittleLoading />
