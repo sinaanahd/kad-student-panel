@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import LittleLoading from "../../reuseables/little-loading";
 import { DataContext } from "../../data/datacontext";
+import urls from "../../urls/urls";
 const KadIntroMethod = () => {
   const { user, setUser } = useContext(DataContext);
   const [method, setMethod] = useState(false);
@@ -18,7 +19,7 @@ const KadIntroMethod = () => {
     if (method) {
       setPause(true);
       axios
-        .patch(`https://daryaftyar.ir/backend/kad_api/user/${user.user_id}`, {
+        .patch(`${urls.user}${user.user_id}`, {
           kad_cognition_method: method,
         })
         .then((res) => {

@@ -3,11 +3,11 @@ import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
 import convert_to_persian from "../functions/convert-to-persian";
 import split_in_three from "../functions/spilit_in_three";
-import sample_banner from "../../asset/images/dashboard/sample-banner.jpg";
 import LittleLoading from "../reuseables/little-loading";
 import DashboardClass from "./dashboard-class/dashboard-class";
 import Calneder from "./calender/calender";
 import SellKelas from "../sell-kelas/sell-kelas";
+import DashboardSlider from "./dashboard-sliders/dashboard-slider";
 const DashboardPage = () => {
   const { kelasses, user } = useContext(DataContext);
   const [active_plan, set_active_plan] = useState("all");
@@ -17,11 +17,7 @@ const DashboardPage = () => {
         <title>میزکاربری</title>
       </Helmet>
       <div className="dashboard-page">
-        {/* <section className="banners-wrapper">
-          <div className="banner-item">
-            <img src={sample_banner} alt="بنر" />
-          </div>
-        </section> */}
+        <DashboardSlider />
         {/* <section className="new-classes-wrapper">
           <h2 className="title">کلاس های جدید</h2>
           <div className="classes-wrapper">

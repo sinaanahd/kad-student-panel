@@ -5,35 +5,49 @@ const ActiveClasses = () => {
   const find_active_classes = (e) => {
     const live_classes = [];
     kelasses.forEach((k) => {
-      if (active_kelas_show(k) && user.kelases.includes(k.kelas_id)) {
+      if (
+        active_kelas_show(k) &&
+        user.kelases.includes(k.kelas_id) &&
+        !user.no_access.includes(k.kelas_id)
+      ) {
         live_classes.push(k);
       }
     });
     return live_classes;
   };
   const active_kelas_show = (kelas) => {
-    const today = new Date();
-    const day = today.toLocaleDateString("en", { weekday: "long" });
-    const hour = today.getHours();
-    const minutes = today.getMinutes();
-    const today_class_time = {
-      ...kelas.stream_plans.find((time) => time.week_day_english === day),
-    };
-    if (Object.keys(today_class_time).length !== 0) {
-      let { start_time, finish_time } = today_class_time;
-      const start_minute = parseInt(start_time.split(":")[1]);
-      const finish_minutes = finish_time.split(":")[1];
-      start_time = parseInt(start_time.split(":")[0]);
-      finish_time = parseInt(finish_time.split(":")[0]);
-      if (start_time * 60 + start_minute - (hour * 60 + minutes) < 15) {
-        if (hour <= finish_time) {
-          if (hour === finish_time && minutes <= finish_minutes) {
-            return true;
-          } else if (hour < finish_time) {
-            return true;
-          } else if (hour === finish_time && minutes > finish_minutes) {
-            return false;
+    const check_kelas = user.kelases222.find(
+      (k) => k.kelas_id === kelas.kelas_id
+    );
+    // console.log(check_kelas, kelas);
+    if (check_kelas && check_kelas.has_access) {
+      const today = new Date();
+      const day = today.toLocaleDateString("en", { weekday: "long" });
+      const hour = today.getHours();
+      const minutes = today.getMinutes();
+      // const hour = 16;
+      // const minutes = 0;
+      const today_class_time = {
+        ...kelas.stream_plans.find((time) => time.week_day_english === day),
+      };
+      if (Object.keys(today_class_time).length !== 0) {
+        let { start_time, finish_time } = today_class_time;
+        const start_minute = parseInt(start_time.split(":")[1]);
+        const finish_minutes = finish_time.split(":")[1];
+        start_time = parseInt(start_time.split(":")[0]);
+        finish_time = parseInt(finish_time.split(":")[0]);
+        if (start_time * 60 + start_minute - (hour * 60 + minutes) < 15) {
+          if (hour <= finish_time) {
+            if (hour === finish_time && minutes <= finish_minutes) {
+              return true;
+            } else if (hour < finish_time) {
+              return true;
+            } else if (hour === finish_time && minutes > finish_minutes) {
+              return false;
+            }
           }
+        } else {
+          return false;
         }
       } else {
         return false;
@@ -72,7 +86,11 @@ const ActiveClasses = () => {
                   </span>
                   <a
                     target="_blank"
-                    href={k.skyRoom_link}
+                    href={
+                      user.kelases_direct_links[k.kelas_id]
+                        ? user.kelases_direct_links[k.kelas_id]
+                        : k.skyRoom_link
+                    }
                     className="enter-class-btn"
                   >
                     ورود به کلاس

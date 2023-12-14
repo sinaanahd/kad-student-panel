@@ -4,6 +4,7 @@ import axios from "axios";
 import LittleLoading from "../reuseables/little-loading";
 import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
+import urls from "../urls/urls";
 
 const Login = () => {
   useEffect(() => {
@@ -21,19 +22,19 @@ const Login = () => {
     if (pass && phone_number) {
       setPause(true);
       axios
-        .get(`https://daryaftyar.ir/backend/kad_api/password/${phone_number}`)
+        .get(`${urls.password}${phone_number}`)
         .then((res) => {
           const { exists, password, user_id } = res.data;
           if (exists) {
             if (password === pass) {
               axios
-                .get(` https://daryaftyar.ir/backend/kad_api/user/${user_id}`)
+                .get(`${urls.user}${user_id}`)
                 .then((res) => {
                   const user = res.data;
                   setUser(user);
                   localStorage.setItem("kad-user", JSON.stringify(user));
                   setPause(false);
-                  window.location.pathname = "/my-courses";
+                  window.location.pathname = "/dashboard";
                 })
                 .catch((err) => {
                   console.log(err.message);

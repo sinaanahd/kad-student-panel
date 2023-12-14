@@ -9,7 +9,7 @@ const InPayQeue = ({ in_qeues }) => {
       <div className="next-pays-box">
         <div className="next-pay-header">
           <span className="next-pay-item pay-first-col">کلاس (ها)</span>
-          <span className="next-pay-item">شماره قسط</span>
+          {/* <span className="next-pay-item">شماره قسط</span> */}
           <span className="next-pay-item">میزان پرداختی</span>
           <span className="next-pay-item">موعد پرداخت</span>
           <span className="next-pay-item pay-last-col"></span>

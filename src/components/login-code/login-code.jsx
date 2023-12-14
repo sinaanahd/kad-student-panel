@@ -4,12 +4,13 @@ import axios from "axios";
 import LittleLoading from "../reuseables/little-loading";
 import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
+import urls from "../urls/urls";
 
 const LoginCode = () => {
   useEffect(() => {
-    // if (user) {
-    //   window.location.pathname = "/my-courses";
-    // }
+    if (user) {
+      window.location.pathname = "/dashboard";
+    }
   }, []);
   const { setUser, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
@@ -25,9 +26,7 @@ const LoginCode = () => {
       setPause(true);
       // `https://kadschool.com/backend/kad_api/verify_phone_number/09351589376`
       axios
-        .get(
-          `https://kadschool.com/backend/kad_api/verify_phone_number/${phone_number}`
-        )
+        .get(`${urls.verify_number}${phone_number}`)
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
           // console.log(res.data);
@@ -78,13 +77,13 @@ const LoginCode = () => {
     set_get_user_pause(true);
     if (code_data === sms_code && user_data && sms_code) {
       axios
-        .get(`https://kadschool.com/backend/kad_api/user/${user_data}`)
+        .get(`${urls.user}${user_data}`)
         .then((res) => {
           const user = res.data;
           setUser(user);
           localStorage.setItem("kad-user", JSON.stringify(user));
           set_get_user_pause(false);
-          window.location.pathname = "/my-courses";
+          window.location.pathname = "/dashboard";
         })
         .catch((e) => console.log(e.message));
     } else {

@@ -12,15 +12,21 @@ const JalasatPage = () => {
     if (!user.kelases.includes(slug_id)) {
       window.location.pathname = "/my-courses";
     }
+    if (user.no_access.includes(slug_id)) {
+      window.location.pathname = "/my-courses";
+    }
   }, []);
   const { kelasses, user, jalasat } = useContext(DataContext);
   const [active_jalase, set_active_jalase] = useState(
-    jalasat ? jalasat[0] : false
+    // jalasat ? jalasat[0] :
+    false
   );
   const slug_id = parseInt(window.location.pathname.split("/")[2]);
   const kelas = kelasses ? kelasses.find((k) => k.kelas_id === slug_id) : false;
   const scroll_to_box = () => {
-    window.scrollTo(0, document.body.scrollHeight);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
   };
   return (
     <>

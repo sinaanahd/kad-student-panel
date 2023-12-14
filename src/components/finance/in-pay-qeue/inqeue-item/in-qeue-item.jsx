@@ -4,20 +4,27 @@ import LittleLoading from "../../../reuseables/little-loading";
 import split_in_three from "../../../functions/spilit_in_three";
 import axios from "axios";
 import { DataContext } from "../../../data/datacontext";
+import urls from "../../../urls/urls";
 const InQeueItem = ({ iq }) => {
   const [pause, setPause] = useState(false);
   const { user } = useContext(DataContext);
-  const pay_next_ghest = (num, pay_id) => {
+  const pay_next_ghest = (pay_id) => {
     setPause(true);
     axios
       .get(
-        `https://kadschool.com/backend/kad_api/payment_link/${user.user_id}-${num}-${pay_id}`
+        `${urls.payment_link}${pay_id}`
         // `https://kadschool.com/backend/kad_api/payment_link2`
       )
       .then((res) => {
-        const payment_link = res.data;
-        // console.log(payment_link);
-        window.open(payment_link.link);
+        // const payment_link = res.data;
+        const { result, response, error } = res.data;
+        // window.open(payment_link.link);
+        if (result) {
+          window.open(response);
+        } else {
+          alert("مشکلی پیش آمده ");
+          console.log(error);
+        }
         setPause(false);
       })
       .catch((e) => {
@@ -27,18 +34,20 @@ const InQeueItem = ({ iq }) => {
   return (
     <div className="next-pay-row">
       <span className="next-pay-item pay-first-col">
-        {iq.kelases_ids.length ? convert_to_persian(iq.kelases_ids.length) : 0}{" "}
+        {iq.products_ids.length
+          ? convert_to_persian(iq.products_ids.length)
+          : 0}{" "}
         کلاس
       </span>
-      <span className="next-pay-item need-bold">
+      {/* <span className="next-pay-item need-bold">
         قسط {iq.is_ghesti ? convert_to_persian(iq.ghest_index) : "وارد نشده"}
+      </span> */}
+      <span className="next-pay-item">
+        {split_in_three(convert_to_persian(iq.payment_amount))} تومان
       </span>
       <span className="next-pay-item">
-        {split_in_three(convert_to_persian(iq.price))} تومان
-      </span>
-      <span className="next-pay-item">
-        {iq.pay_deadline
-          ? new Date(iq.pay_deadline).toLocaleDateString("fa-ir")
+        {iq.deadline_datetime
+          ? new Date(iq.deadline_datetime).toLocaleDateString("fa-ir")
           : "وارد نشده"}
       </span>
       <span className="next-pay-item pay-last-col">
@@ -50,7 +59,7 @@ const InQeueItem = ({ iq }) => {
           <span
             className="pay-ghest-btn"
             onClick={() => {
-              pay_next_ghest(iq.ghest_index, iq.pay_id);
+              pay_next_ghest(iq.payment_id);
             }}
           >
             پرداخت

@@ -18,6 +18,8 @@ import GuidePage from "./components/guide/guide";
 import DashboardPage from "./components/dashboard/dashboard";
 import ShopPage from "./components/shop/shop";
 import CartPage from "./components/cart/cart";
+import OnlineStream from "./components/online-stream/online-strem";
+import Cookie from "./components/cookie-maker/cookie-maker";
 
 function App() {
   const {user} = useContext(DataContext);
@@ -56,6 +58,8 @@ function App() {
               <Route path="/dashboard" exact component={DashboardPage} />
               <Route path="/shop" exact component={ShopPage} />
               <Route path="/cart" exact component={CartPage} />
+              <Route path="/cookie" exact component={Cookie} />
+              <Route path="/online/:id" exact component={OnlineStream} />
               <Route path="/not-found" component={NotFound} />
               <Redirect to="/not-found" />
             </Switch>

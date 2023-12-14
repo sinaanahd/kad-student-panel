@@ -78,7 +78,7 @@ const SpotData = () => {
           </span>
         </span>
       </div>
-      <Link to="#" className="tutuorials-btn">
+      <Link to="/guides" className="tutuorials-btn">
         آموزش ها
       </Link>
     </section>

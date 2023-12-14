@@ -27,7 +27,37 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+    </div>
+      <!-- <div id="player"></div>
+      <script src="https://app.spotplayer.ir/assets/js/app-api.js"></script>
+      <script type="application/javascript">
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+              let c = ca[i];
+              while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+              }
+            }
+            return "";
+          }
+        async function Play() {
+          try {
+            const sp = new SpotPlayer(document.getElementById('player'), getCookie("X"), "/spotX", false);
+            await sp.Open("Y3yA/DKTDPpOnYyamd+GrRa9ngc/hEI=", "64ee2ec675cbf141743f186f", "item");
+          }
+          catch (ex) {
+            console.log(ex);
+          }
+        }
+        Play();
+      </script> -->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

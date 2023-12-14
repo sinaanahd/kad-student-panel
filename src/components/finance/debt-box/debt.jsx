@@ -4,11 +4,12 @@ import LittleLoading from "../../reuseables/little-loading";
 import spilit_in_three from "../../functions/spilit_in_three";
 import convert_to_persian from "../../functions/convert-to-persian";
 import { DataContext } from "../../data/datacontext";
+import urls from "../../urls/urls";
 const check_total_debt = (arr) => {
   let sum = 0;
   if (arr.length !== 0) {
     arr.forEach((item) => {
-      sum += item.price;
+      sum += item.payment_amount;
     });
   }
   return sum;
@@ -19,15 +20,22 @@ const Debt = ({ in_qeues }) => {
   const pay_next_ghest = () => {
     setPause(true);
     const next_pay = in_qeues[0];
+    // console.log(next_pay);
     axios
       .get(
-        `https://kadschool.com/backend/kad_api/payment_link/${user.user_id}-${next_pay.ghest_index}-${next_pay.pay_id}`
+        `${urls.payment_link}${next_pay.payment_id}`
         // `https://kadschool.com/backend/kad_api/payment_link2`
       )
       .then((res) => {
-        const payment_link = res.data;
-        // console.log(payment_link);
-        window.open(payment_link.link);
+        // const payment_link = res.data;
+        const { result, response, error } = res.data;
+        // window.open(payment_link.link);
+        if (result) {
+          window.open(response);
+        } else {
+          alert("مشکلی پیش آمده ");
+          console.log(error);
+        }
         setPause(false);
       })
       .catch((e) => {

@@ -13,6 +13,8 @@ const NotifPart = () => {
         arr.push(kelas);
       }
     });
+    // const arr_to_log = kelasses.filter((k) => arr.includes(k.kelas_id));
+    // console.log(arr_to_log);
     return arr;
   };
   return (
@@ -23,38 +25,30 @@ const NotifPart = () => {
       <div className="notices-wrapper">
         {user && kelasses ? (
           disabled_classes_finder().length !== 0 ? (
-            disabled_classes_finder().map((k, i) => (
-              <div className="notif-item" key={i++}>
-                <span className="notuf-title">
-                  قطع دسترسی کلاس{" "}
-                  {kelasses.find((kelas) => kelas.kelas_id === k).kelas_title} :
-                </span>
-                <span className="notif-text">
-                  دوست عزیزم ! به علت عدم پرداخت صورتحسابت ، دسترسیت به بعضی از
-                  کلاس‌ها موقتا غیر فعال شده ... برای پرداخت ، به صفحه ی امور
-                  مالی برو و اگر مشکلی بود با پشتیبانی کاد تماس بگیر .
-                </span>
-              </div>
-            ))
+            disabled_classes_finder().map((k, i) =>
+              kelasses.find((kelas) => kelas.kelas_id === k) ? (
+                <div className="notif-item" key={i++}>
+                  <span className="notuf-title">
+                    قطع دسترسی کلاس{" "}
+                    {kelasses.find((kelas) => kelas.kelas_id === k).kelas_title}{" "}
+                    :
+                  </span>
+                  <span className="notif-text">
+                    دوست عزیزم ! به علت عدم پرداخت صورتحسابت ، دسترسیت به بعضی
+                    از کلاس‌ها موقتا غیر فعال شده ... برای پرداخت ، به صفحه ی
+                    امور مالی برو و اگر مشکلی بود با پشتیبانی کاد تماس بگیر .
+                  </span>
+                </div>
+              ) : (
+                <></>
+              )
+            )
           ) : (
             <div className="notif-item">موردی برای نمایش وجود ندارد</div>
           )
         ) : (
           <div className="notif-item">موردی برای نمایش وجود ندارد</div>
         )}
-        {/* <div className="notif-item">
-          <span className="notuf-title">دلیل قطع دسترسی کلاس فلان :</span>
-          <span className="notif-text">
-            دلیل قطع دسترسیدلیل قطع دسترسیدلیل قطع دسترسیدلیل قطع دسترسیدلیل قطع
-            دسترسی
-          </span>
-        </div>
-        <div className="notif-item">
-          <span className="notuf-title">قسط :</span>
-          <span className="notif-text">
-            وقتی موعد قسط نزدیک شده به کاربر اطلاع بدیم و یادآوری بکنیم
-          </span>
-        </div> */}
       </div>
     </section>
   );

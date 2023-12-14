@@ -6,6 +6,7 @@ import split_in_three from "../functions/spilit_in_three";
 import convert_to_persian from "../functions/convert-to-persian";
 import Cart_item from "./cart-item/cart-item";
 import axios from "axios";
+import urls from "../urls/urls";
 const CartPage = () => {
   const { user, cart } = useContext(DataContext);
   const [pay_option, set_pay_option] = useState(false);
@@ -22,9 +23,9 @@ const CartPage = () => {
   const get_naghd_link = () => {
     set_cash_pause(true);
     axios
-      .get(`https://kadschool.com/backend/kadstore/siteSale/${user.user_id}-0`)
+      .get(`${urls.sale}${user.user_id}-0`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const { error, response, result } = res.data;
         if (result) {
           window.open(response);
@@ -41,9 +42,9 @@ const CartPage = () => {
   const get_ghest_link = () => {
     set_ghest_pay_pause(true);
     axios
-      .get(`https://kadschool.com/backend/kadstore/siteSale/${user.user_id}-3`)
+      .get(`${urls.sale}${user.user_id}-3`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const { error, response, result } = res.data;
         if (result) {
           window.open(response);
@@ -60,11 +61,9 @@ const CartPage = () => {
   const calculate_ghest = () => {
     set_ghest_pause(true);
     axios
-      .get(
-        `https://kadschool.com/backend/kadstore/ghestiDetails/${cart.final_price}-${ghest_num}`
-      )
+      .get(`${urls.ghest_details}${cart.final_price}-${ghest_num}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const { error, response, result } = res.data;
         if (result) {
           set_ghests(response);
@@ -83,12 +82,9 @@ const CartPage = () => {
     if (cart.ids.length !== 0) {
       set_submit_pause(true);
       axios
-        .patch(
-          `https://kadschool.com/backend/kadstore/cart/${user.user_id}`,
-          ids
-        )
+        .patch(`${urls.buy_cart}${user.user_id}`, ids)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           const { error, response, result } = res.data;
           if (result) {
             if (response.products_ids.length !== cart.ids.length) {

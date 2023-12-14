@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import LittleLoading from "../../reuseables/little-loading";
 import axios from "axios";
 import { DataContext } from "../../data/datacontext";
+import urls from "../../urls/urls";
 const Password = () => {
   const { user } = useContext(DataContext);
   const [pause, setPause] = useState(false);
@@ -41,10 +42,9 @@ const Password = () => {
       } else {
         setPause(true);
         axios
-          .patch(
-            `https://daryaftyar.ir/backend/kad_api/password/${user.phone_number}`,
-            { new_password: pass1 }
-          )
+          .patch(`${urls.password}${user.phone_number}`, {
+            new_password: pass1,
+          })
           .then((res) => {
             const { status, message } = res.data;
             setPause(false);

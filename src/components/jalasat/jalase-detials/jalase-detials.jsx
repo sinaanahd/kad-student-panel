@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { DataContext } from "../../data/datacontext";
 const JalaseDetials = ({ active_jalase }) => {
   const { sample_files } = useContext(DataContext);
@@ -27,9 +27,7 @@ const JalaseDetials = ({ active_jalase }) => {
   return (
     <section className="session-detail">
       <div className="box-header">
-        <h2 className="box-title">
-          جزئیات جلسه {active_jalase.jalase_title}-{active_jalase.jalase_id}
-        </h2>
+        <h2 className="box-title">جزئیات {active_jalase.jalase_title}</h2>
       </div>
       <div className="main-row">
         <div className="flies-wrapper">
@@ -134,31 +132,11 @@ const JalaseDetials = ({ active_jalase }) => {
           ) : (
             <></>
           )}
-          {/* <div className="file-row">
-            <span className="file-row-item">1</span>
-            <span className="file-row-item">فسفه و منطق</span>
-            <span className="file-row-item">دانلود</span>
-          </div>
-          <div className="file-row">
-            <span className="file-row-item">1</span>
-            <span className="file-row-item">فسفه و منطق</span>
-            <span className="file-row-item">دانلود</span>
-          </div>
-          <div className="file-row">
-            <span className="file-row-item">1</span>
-            <span className="file-row-item">فسفه و منطق</span>
-            <span className="file-row-item">دانلود</span>
-          </div>
-          <div className="file-row">
-            <span className="file-row-item">1</span>
-            <span className="file-row-item">فسفه و منطق</span>
-            <span className="file-row-item">دانلود</span>
-          </div> */}
         </div>
-        {/* <div className="watch-offline-video-wrapper">
-              <span className="offline-title">مشاهده آفلاین جلسه</span>
-              <span className="video-box"></span>
-            </div> */}
+        <div className="watch-offline-video-wrapper">
+          <span className="offline-title">مشاهده آفلاین جلسه</span>
+          <span className="video-box"></span>
+        </div>
       </div>
     </section>
   );

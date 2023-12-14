@@ -8,7 +8,7 @@ import Debt from "./debt-box/debt";
 const FinancePage = () => {
   const { user, pay_info, get_info } = useContext(DataContext);
   const in_qeues = pay_info
-    ? pay_info.filter((pi) => !pi.pay_date).reverse()
+    ? pay_info.filter((pi) => pi.status !== "پرداخت شده").reverse()
     : [];
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const FinancePage = () => {
             <span className="factor-item">نوع و وضعیت پرداخت</span>
             <span className="factor-item">میزان پرداختی</span>
             <span className="factor-item last-col">
-              تایخ و زمان آخرین پرداخت
+              تاریخ و زمان آخرین پرداخت
             </span>
           </div>
           {pay_info ? (

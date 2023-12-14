@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import last_login_check from "../functions/last-login-check";
 import axios from "axios";
+import urls from "../urls/urls";
 
 const user_data = JSON.parse(localStorage.getItem("kad-user")) || false;
 const kelasses_data = JSON.parse(localStorage.getItem("kelasses")) || false;
@@ -14,6 +15,7 @@ const last_login = JSON.parse(localStorage.getItem("LL"))
   ? JSON.parse(localStorage.getItem("LL"))
   : this_time_login;
 const course_data = JSON.parse(localStorage.getItem("courses")) || false;
+const banner_data = JSON.parse(localStorage.getItem("banners")) || false;
 const cart_data = JSON.parse(localStorage.getItem("cart")) || {
   ids: [],
   items: [],
@@ -31,6 +33,7 @@ const DataProvider = ({ children }) => {
   const [pay_info, setPay_info] = useState(pay_info_data);
   const [courses, setCourses] = useState(course_data);
   const [cart, set_cart] = useState(cart_data);
+  const [banners, set_banners] = useState(banner_data);
   const subjects = [
     { id: 0, name: "ریاضی" },
 
@@ -39,6 +42,16 @@ const DataProvider = ({ children }) => {
     { id: 2, name: "انسانی" },
 
     { id: 3, name: "هنر" },
+  ];
+  const ref_subjects = [
+    { id: 0, name: "ریاضی" },
+
+    { id: 1, name: "تجربی" },
+
+    { id: 2, name: "انسانی" },
+
+    { id: 3, name: "هنر" },
+    { id: 1111, name: "ثبت نشده" },
   ];
   const years = [
     {
@@ -62,6 +75,29 @@ const DataProvider = ({ children }) => {
       name: "فارغ التحصیل",
     },
   ];
+  const ref_years = [
+    {
+      id: 10,
+      name: "دهم",
+    },
+    {
+      id: 11,
+      name: "یازدهم",
+    },
+    {
+      id: 12,
+      name: "دوازدهم",
+    },
+    {
+      id: 18,
+      name: "کنکور",
+    },
+    {
+      id: 0,
+      name: "فارغ التحصیل",
+    },
+    { id: 1111, name: "ثبت نشده" },
+  ];
   const doreha = [
     {
       dore_id: 5,
@@ -76,6 +112,8 @@ const DataProvider = ({ children }) => {
   ];
   useEffect(() => {
     const is_time = last_login_check(last_login, this_time_login);
+    // get_user(7228);
+    get_banners();
     if (is_time) {
       // console.log("is time");
       if (user) {
@@ -110,7 +148,7 @@ const DataProvider = ({ children }) => {
   }, []);
   const get_teachers = () => {
     axios
-      .get("https://kadschool.com/backend/kad_api/teachers")
+      .get(`${urls.teachers}`)
       .then((res) => {
         const teachers = res.data;
         setTeachers(teachers);
@@ -122,7 +160,7 @@ const DataProvider = ({ children }) => {
   };
   const get_jalasat = () => {
     axios
-      .get("https://kadschool.com/backend/kad_api/admin_jalasat")
+      .get(`${urls.jalasat}`)
       .then((res) => {
         const jalasat = res.data;
         set_jalasat(jalasat);
@@ -134,18 +172,19 @@ const DataProvider = ({ children }) => {
   };
   const get_user = (id) => {
     axios
-      .get(`https://kadschool.com/backend/kad_api/user/${id}`)
+      .get(`${urls.user}${id}`)
       .then((res) => {
         const user = res.data;
         setUser(user);
-        // console.log(user);
+        if (user.kelases) {
+        }
         localStorage.setItem("kad-user", JSON.stringify(user));
       })
       .catch((e) => console.log(e.message));
   };
   const get_kelasses = () => {
     axios
-      .get("https://kadschool.com/backend/kad_api/kelases")
+      .get(`${urls.kelasses}`)
       .then((res) => {
         const kelasses = res.data;
         setKelasses(kelasses);
@@ -157,7 +196,7 @@ const DataProvider = ({ children }) => {
   };
   const get_sample_files = () => {
     axios
-      .get("https://kadschool.com/backend/kad_api/sample_files")
+      .get(`${urls.sample_files}`)
       .then((res) => {
         const sample_files = res.data;
         set_sample_files(sample_files);
@@ -169,18 +208,24 @@ const DataProvider = ({ children }) => {
   };
   const get_info = (id) => {
     axios
-      .get(`https://kadschool.com/backend/kad_api/financial_records/${id}`)
+      .get(`${urls.finance_records}${id}`)
       .then((res) => {
         const pay_info = res.data;
         // console.log(pay_info);
-        setPay_info(pay_info.reverse());
-        localStorage.setItem("pay_info", JSON.stringify(pay_info));
+        const { result, response, error } = res.data;
+        if (result) {
+          setPay_info(response.reverse());
+          localStorage.setItem("pay_info", JSON.stringify(response));
+        } else {
+          alert("مشکلی پیش آمده");
+          console.log(error);
+        }
       })
       .catch((e) => console.log(e.message));
   };
   const get_courses = () => {
     axios
-      .get("https://kadschool.com/backend/kad_api/courses")
+      .get(`${urls.all_courses}`)
       .then((res) => {
         const courses = res.data;
         setCourses(courses);
@@ -198,23 +243,27 @@ const DataProvider = ({ children }) => {
       final_price: 0,
     };
     const new_cart = cart ? { ...cart } : cart_sample_obj;
-    const searched_obj = new_cart.items.find(
-      (item) => item.kelas_id === obj.kelas_id
-    );
-    if (!searched_obj) {
-      new_cart.items.push(obj);
-      new_cart.ids = get_ids(new_cart.items);
-      new_cart.pure_price = calculate_pure_price(new_cart.items);
-      new_cart.discounts = calculate_discounts(new_cart.items);
-      new_cart.final_price = new_cart.pure_price - new_cart.discounts;
+    if (!user.kelases.includes(obj.kelas_id)) {
+      const searched_obj = new_cart.items.find(
+        (item) => item.kelas_id === obj.kelas_id
+      );
+      if (!searched_obj) {
+        new_cart.items.push(obj);
+        new_cart.ids = get_ids(new_cart.items);
+        new_cart.pure_price = calculate_pure_price(new_cart.items);
+        new_cart.discounts = calculate_discounts(new_cart.items);
+        new_cart.final_price = new_cart.pure_price - new_cart.discounts;
+      } else {
+        const deleted_cart = delete_from_cart(new_cart, searched_obj.kelas_id);
+        new_cart.ids = get_ids(deleted_cart.items);
+        new_cart.pure_price = calculate_pure_price(new_cart.items);
+        new_cart.discounts = calculate_discounts(new_cart.items);
+        new_cart.final_price = new_cart.pure_price - new_cart.discounts;
+      }
+      finilize_cart(new_cart);
     } else {
-      const deleted_cart = delete_from_cart(new_cart, searched_obj.kelas_id);
-      new_cart.ids = get_ids(deleted_cart.items);
-      new_cart.pure_price = calculate_pure_price(new_cart.items);
-      new_cart.discounts = calculate_discounts(new_cart.items);
-      new_cart.final_price = new_cart.pure_price - new_cart.discounts;
+      alert("شما قبلا این محصول رو خریداری کردید");
     }
-    finilize_cart(new_cart);
   };
   const delete_from_cart = (cart, id) => {
     const index = cart.items.findIndex((item) => item.kelas_id === id);
@@ -248,6 +297,18 @@ const DataProvider = ({ children }) => {
     });
     return sum;
   };
+  const get_banners = () => {
+    axios
+      .get(urls.banners)
+      .then((res) => {
+        // console.log(res.data);
+        set_banners(res.data);
+        localStorage.setItem("banners", JSON.stringify(res.data));
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
   return (
     <DataContext.Provider
       value={{
@@ -265,6 +326,9 @@ const DataProvider = ({ children }) => {
         courses,
         cart,
         handle_cart,
+        ref_subjects,
+        ref_years,
+        banners,
       }}
     >
       {children}

@@ -5,12 +5,13 @@ import LittleLoading from "../reuseables/little-loading";
 import { Helmet } from "react-helmet";
 import { DataContext } from "../data/datacontext";
 import arrow from "../../asset/images/login/arrow-vector.svg";
+import urls from "../urls/urls";
 
 const SignUp = () => {
   useEffect(() => {
-    // if (user) {
-    //   window.location.pathname = "/my-courses";
-    // }
+    if (user) {
+      window.location.pathname = "/dashboard";
+    }
   }, []);
   const { setUser, subjects, years, user } = useContext(DataContext);
   const [phone_number, setPhone_number] = useState(false);
@@ -34,12 +35,12 @@ const SignUp = () => {
     if (sms_code === code_data && sms_code && code_data) {
       if (been_before) {
         axios
-          .get(` https://daryaftyar.ir/backend/kad_api/user/${user_data}`)
+          .get(`${urls.user}${user_data}`)
           .then((res) => {
             const user = res.data;
             setUser(user);
             localStorage.setItem("kad-user", JSON.stringify(user));
-            window.location.pathname = "/my-courses";
+            window.location.pathname = "/dashboard";
           })
           .catch((err) => {
             console.log(err.message);
@@ -70,12 +71,10 @@ const SignUp = () => {
     if (phone_number) {
       setPause(true);
       axios
-        .get(
-          `https://kadschool.com/backend/kad_api/verify_phone_number/${phone_number}`
-        )
+        .get(`${urls.verify_number}${phone_number}`)
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
-          // console.log(res.data);
+          console.log(res.data);
           setPause(false);
           if (been_before) {
             set_user_data(user_id);
@@ -136,16 +135,16 @@ const SignUp = () => {
       };
       set_sign_up_pause(true);
       axios
-        .post(`https://kadschool.com/backend/kad_api/register_user`, send_obj)
+        .post(`${urls.register_user}`, send_obj)
         .then((res) => {
           let data = res.data;
           axios
-            .get(`https://kadschool.com/backend/kad_api/user/${data.user_id}`)
+            .get(`${urls.user}${data.user_id}`)
             .then((res) => {
               const user = res.data;
               setUser(user);
               localStorage.setItem("kad-user", JSON.stringify(user));
-              window.location.pathname = "/my-courses";
+              window.location.pathname = "/dashboard";
               set_sign_up_pause(false);
             })
             .catch((err) => this.props.handle_error(err));

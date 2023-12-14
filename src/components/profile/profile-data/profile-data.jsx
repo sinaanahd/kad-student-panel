@@ -4,8 +4,10 @@ import arrow from "../../../asset/images/profile/arrow-vector.svg";
 import { DataContext } from "../../data/datacontext";
 import make_full_objects from "../../functions/make-full-objects";
 import axios from "axios";
+import urls from "../../urls/urls";
 const ProfileData = () => {
-  const { user, setUser, years, subjects } = useContext(DataContext);
+  const { user, setUser, years, subjects, ref_subjects, ref_years } =
+    useContext(DataContext);
   const [name, set_name] = useState(false);
   const [name_err, set_name_err] = useState(false);
   const [address, set_address] = useState(false);
@@ -128,10 +130,7 @@ const ProfileData = () => {
     if (Object.keys(send_obj).length !== 0) {
       setPause(true);
       axios
-        .patch(
-          `https://daryaftyar.ir/backend/kad_api/user/${user.user_id}`,
-          send_obj
-        )
+        .patch(`${urls.user}${user.user_id}`, send_obj)
         .then((res) => {
           const user = res.data;
           console.log(user);
@@ -240,7 +239,7 @@ const ProfileData = () => {
               {subject
                 ? subject
                 : user
-                ? subjects.find((s) => s.id === user.subject).name
+                ? ref_subjects.find((s) => s.id === user.subject).name
                 : "انتخاب رشته"}
             </span>
             <img src={arrow} alt="باز / بسته" />
@@ -276,7 +275,7 @@ const ProfileData = () => {
               {grade
                 ? grade
                 : user
-                ? years.find((s) => s.id === user.year).name
+                ? ref_years.find((s) => s.id === user.year).name
                 : "انتخاب پایه"}
             </span>
             <img src={arrow} alt="باز / بسته" />

@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import LittleLoading from "../reuseables/little-loading";
 import { DataContext } from "../data/datacontext";
 import axios from "axios";
+import urls from "../urls/urls";
 const Forget_pass = () => {
   useEffect(() => {
     // if (user) {
@@ -52,9 +53,7 @@ const Forget_pass = () => {
     if (phone_number) {
       setPause(true);
       axios
-        .get(
-          `https://kadschool.com/backend/kad_api/verify_phone_number/${phone_number}`
-        )
+        .get(`${urls.verify_number}${phone_number}`)
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
           // console.log(res.data);
@@ -102,10 +101,7 @@ const Forget_pass = () => {
       setPass_err(false);
       setPassPause(true);
       axios
-        .patch(
-          `https://kadschool.com/backend/kad_api/password/${phone_number}`,
-          { new_password: pass }
-        )
+        .patch(`${urls.password}${phone_number}`, { new_password: pass })
         .then((res) => {
           const { status, message } = res.data;
           // console.log(res.data);

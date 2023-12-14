@@ -6,7 +6,7 @@ const Factor = ({ factor }) => {
   const { kelasses } = useContext(DataContext);
   const [kelas_names, set_kelas_names] = useState(false);
   const kelas_names_data = kelasses.filter((k) =>
-    factor.kelases_ids.includes(k.kelas_id)
+    factor.products_ids.includes(k.kelas_id)
   );
   return (
     <>
@@ -17,8 +17,8 @@ const Factor = ({ factor }) => {
             set_kelas_names(!kelas_names);
           }}
         >
-          {factor.kelases_ids.length
-            ? convert_to_persian(factor.kelases_ids.length)
+          {factor.products_ids.length
+            ? convert_to_persian(factor.products_ids.length)
             : 0}{" "}
           کلاس
         </span>
@@ -26,16 +26,19 @@ const Factor = ({ factor }) => {
           {factor.is_ghesti ? "قسطی" : "نقدی"}
         </span>
         <span className="factor-item">
-          {spilit_in_three(convert_to_persian(factor.price))} تومان
+          {spilit_in_three(convert_to_persian(factor.payment_amount))} تومان
         </span>
         <span className="factor-item last-col">
-          {factor.pay_date ? (
+          {factor.paying_datetime ? (
             <>
               <span className="inside-item">
-                {new Date(factor.pay_date).toLocaleDateString("fa-ir")}
+                {new Date(factor.paying_datetime).toLocaleDateString("fa-ir")}
               </span>
               <span className="inside-item">
-                {factor.pay_date.split("T")[1].split(".")[0].replace("Z", "")}
+                {factor.paying_datetime
+                  .split("T")[1]
+                  .split(".")[0]
+                  .replace("Z", "")}
               </span>
             </>
           ) : (
