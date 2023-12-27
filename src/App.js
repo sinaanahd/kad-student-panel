@@ -20,6 +20,7 @@ import ShopPage from "./components/shop/shop";
 import CartPage from "./components/cart/cart";
 import OnlineStream from "./components/online-stream/online-strem";
 import Cookie from "./components/cookie-maker/cookie-maker";
+import FixedPopUp from "./components/reuseables/fixed-pop-up/fixed-pop-up";
 
 function App() {
   const {user} = useContext(DataContext);
@@ -34,7 +35,7 @@ function App() {
       }
     }else{
       if(slug === "/login" || slug === "/sign-up" || slug === "/login-code" || slug === "/forget-pass" || slug === "" || slug === "/"){
-        window.location.pathname = "/my-courses";
+        window.location.pathname = "/dashboard";
       }
     }
     
@@ -74,7 +75,7 @@ function App() {
               <Route path="/" component={Login} />
             </Switch>
     </> }
-        
+        <FixedPopUp />
     </BrowserRouter>
     </>
   );

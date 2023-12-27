@@ -34,6 +34,7 @@ const Login = () => {
                   setUser(user);
                   localStorage.setItem("kad-user", JSON.stringify(user));
                   setPause(false);
+                  sessionStorage.setItem("pop-up", JSON.stringify(false));
                   window.location.pathname = "/dashboard";
                 })
                 .catch((err) => {

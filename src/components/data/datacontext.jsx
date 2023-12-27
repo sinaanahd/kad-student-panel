@@ -7,6 +7,7 @@ const user_data = JSON.parse(localStorage.getItem("kad-user")) || false;
 const kelasses_data = JSON.parse(localStorage.getItem("kelasses")) || false;
 const jalasat_data = JSON.parse(localStorage.getItem("jalasat")) || false;
 const teachers_data = JSON.parse(localStorage.getItem("teachers")) || false;
+const doreha_data = JSON.parse(localStorage.getItem("doreha")) || false;
 const pay_info_data = JSON.parse(localStorage.getItem("pay_info")) || false;
 const sample_files_data =
   JSON.parse(localStorage.getItem("sample_files")) || false;
@@ -34,6 +35,7 @@ const DataProvider = ({ children }) => {
   const [courses, setCourses] = useState(course_data);
   const [cart, set_cart] = useState(cart_data);
   const [banners, set_banners] = useState(banner_data);
+  const [ref_doreha, setDoreha] = useState(doreha_data);
   const subjects = [
     { id: 0, name: "ریاضی" },
 
@@ -98,21 +100,80 @@ const DataProvider = ({ children }) => {
     },
     { id: 1111, name: "ثبت نشده" },
   ];
-  const doreha = [
-    {
-      dore_id: 5,
-      dore_title: "سالانه",
-      slug_name: "سالانه",
-    },
-    {
-      dore_id: 6,
-      dore_title: "آفلاین",
-      slug_name: "آفلاین",
-    },
-  ];
+  // const doreha = [
+  //   {
+  //     dore_id: 5,
+  //     dore_title: "سالانه",
+  //     slug_name: "سالانه",
+  //   },
+  //   {
+  //     dore_id: 6,
+  //     dore_title: "آفلاین",
+  //     slug_name: "آفلاین",
+  //   },
+  // ];
+  const doreha = ref_doreha
+    ? ref_doreha
+    : [
+        {
+          dore_id: 5,
+          dore_title: "سالانه",
+          dore_start_date: "2023-07-29",
+          descriptions: [
+            "توی کلاس های سالیانه 0 تا 100 کلیه مباحث از کلیه پایه ها رو تدریس میکنیم و کلی آزمون آزمایشی هفتگی برات داریم .",
+            "علاوه بر این بهت هر جلسه تکلیف میدیم که بعد از کلاس به امون خدا رها نشی .",
+            "تازه هر جلسه هم آنلاین و هم آفلاین هر تعداد سوالی که داشته باشی رفع اشکال میشه .",
+          ],
+          aparat_link: "",
+          kelases: [
+            9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 22, 23, 24, 26, 45, 46,
+          ],
+          slug_name: "سالانه",
+        },
+        {
+          dore_id: 6,
+          dore_title: "آفلاین",
+          dore_start_date: "2023-07-25",
+          descriptions: [
+            "دوره ی آفلاین شامل بهترین کلاس هاییه که میتونی پیدا کنی !",
+            "نکته ی خوبشم اینه که وقتی ثبت نام کنی ، به کل ویدیو های دوره دسترسی خواهی داشت ...",
+          ],
+          aparat_link: "",
+          kelases: [],
+          slug_name: "آفلاین",
+        },
+        {
+          dore_id: 7,
+          dore_title: "امتحان نهایی",
+          dore_start_date: "2023-12-05",
+          descriptions: ["هنوز توضیحاتی ثبت نشده ."],
+          aparat_link: "",
+          kelases: [34, 37, 38, 39, 40, 41, 42, 43, 44],
+          slug_name: "امتحان-نهایی",
+        },
+        {
+          dore_id: 8,
+          dore_title: "نکته و تست",
+          dore_start_date: "2023-12-07",
+          descriptions: ["توضیحات برای دوره نکته و تست به زودی ثبت میشه !"],
+          aparat_link: "",
+          kelases: [],
+          slug_name: "نکته-و-تست",
+        },
+        {
+          dore_id: 9,
+          dore_title: "مبحثی",
+          dore_start_date: "2023-12-07",
+          descriptions: ["توضیحات دوره مبحثی به زودی ثبت میشه !"],
+          aparat_link: "",
+          kelases: [27, 28, 29],
+          slug_name: "مبحثی",
+        },
+      ];
   useEffect(() => {
     const is_time = last_login_check(last_login, this_time_login);
     // get_user(7228);
+    get_doreha();
     get_banners();
     if (is_time) {
       // console.log("is time");
@@ -296,6 +357,22 @@ const DataProvider = ({ children }) => {
       sum += discount_amount;
     });
     return sum;
+  };
+  const get_doreha = () => {
+    axios
+      .get(urls.doreha)
+      .then((res) => {
+        const ref_doreha = res.data;
+        ref_doreha.forEach((dore) => {
+          const slug_name = dore.dore_title.replaceAll(" ", "-");
+          dore.slug_name = slug_name;
+        });
+        setDoreha(ref_doreha);
+        localStorage.setItem("doreha", JSON.stringify(ref_doreha));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
   const get_banners = () => {
     axios

@@ -135,7 +135,9 @@ const JalaseDetials = ({ active_jalase }) => {
         </div>
         <div className="watch-offline-video-wrapper">
           <span className="offline-title">مشاهده آفلاین جلسه</span>
-          <span className="video-box"></span>
+          <span className="video-box">
+            <video src="https://api.vidprotect.ir/v1/slug/file/6582ed30d620f0274f96d9f3"></video>
+          </span>
         </div>
       </div>
     </section>

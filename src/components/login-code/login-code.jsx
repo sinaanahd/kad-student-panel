@@ -83,6 +83,7 @@ const LoginCode = () => {
           setUser(user);
           localStorage.setItem("kad-user", JSON.stringify(user));
           set_get_user_pause(false);
+          sessionStorage.setItem("pop-up", JSON.stringify(false));
           window.location.pathname = "/dashboard";
         })
         .catch((e) => console.log(e.message));

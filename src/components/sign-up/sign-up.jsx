@@ -40,6 +40,7 @@ const SignUp = () => {
             const user = res.data;
             setUser(user);
             localStorage.setItem("kad-user", JSON.stringify(user));
+            sessionStorage.setItem("pop-up", JSON.stringify(false));
             window.location.pathname = "/dashboard";
           })
           .catch((err) => {
