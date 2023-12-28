@@ -75,7 +75,7 @@ function App() {
               <Route path="/" component={Login} />
             </Switch>
     </> }
-        <FixedPopUp />
+        {/* <FixedPopUp /> */}
     </BrowserRouter>
     </>
   );

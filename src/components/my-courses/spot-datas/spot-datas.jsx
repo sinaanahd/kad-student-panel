@@ -4,14 +4,21 @@ import LittleLoading from "../../reuseables/little-loading";
 import copy_icon from "../../../asset/images/my-courses/copy-icon.svg";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import copy_to_clip_board from "../../functions/copy-to-clip-board";
+import ReloadBtn from "../../reuseables/reload-btn/reload-btn";
 const SpotData = () => {
-  const { user } = useContext(DataContext);
+  const { user, get_user, setUser } = useContext(DataContext);
   const [copied, setCopied] = useState(false);
+  const handle_reload = () => {
+    const id = user.user_id;
+    setUser(false);
+    get_user(id);
+  };
   return (
     <section className="spot-datas-wrapper">
       <div className="box-header">
         <h2 className="box-title">دسترسی های لازم</h2>
         {copied ? <span className="spot-copied">کپی شد!</span> : <></>}
+        <ReloadBtn click={handle_reload} />
       </div>
       <div className="spot-datas">
         <span className="spot-data">

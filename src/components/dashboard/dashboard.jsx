@@ -8,9 +8,18 @@ import DashboardClass from "./dashboard-class/dashboard-class";
 import Calneder from "./calender/calender";
 import SellKelas from "../sell-kelas/sell-kelas";
 import DashboardSlider from "./dashboard-sliders/dashboard-slider";
+import ReloadBtn from "../reuseables/reload-btn/reload-btn";
 const DashboardPage = () => {
-  const { kelasses, user } = useContext(DataContext);
+  const { user, setUser, get_user, kelasses, get_kelasses, setKelasses } =
+    useContext(DataContext);
   const [active_plan, set_active_plan] = useState("all");
+  const handle_reload = () => {
+    const id = user.user_id;
+    setUser(false);
+    get_user(id);
+    setKelasses(false);
+    get_kelasses();
+  };
   return (
     <>
       <Helmet>
@@ -63,6 +72,7 @@ const DashboardPage = () => {
                 کلاس های من
               </span>
             </div>
+            <ReloadBtn click={handle_reload} />
           </div>
           <Calneder active_plan={active_plan} />
         </section>

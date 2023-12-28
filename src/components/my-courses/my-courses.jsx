@@ -6,8 +6,10 @@ import User_kelas from "./user-kelas/user-kelas";
 import SpotData from "./spot-datas/spot-datas";
 import ActiveClasses from "./active-classes/active-classes";
 import NotifPart from "./notifs/notif";
+import ReloadBtn from "../reuseables/reload-btn/reload-btn";
 const MYCourses = () => {
-  const { user, kelasses } = useContext(DataContext);
+  const { user, kelasses, setKelasses, get_kelasses, get_user, setUser } =
+    useContext(DataContext);
   const [filtered_classes, set_filtered_classess] = useState([]);
   const [active_filter, set_active_filter] = useState(false);
   const fill_classes = () => {
@@ -56,6 +58,13 @@ const MYCourses = () => {
         break;
       }
     }
+  };
+  const handle_reload = (e) => {
+    const id = user.user_id;
+    setUser(false);
+    get_user(id);
+    setKelasses(false);
+    get_kelasses();
   };
   return (
     <>
@@ -107,6 +116,7 @@ const MYCourses = () => {
                 بدون دسترسی
               </span>
             </div>
+            <ReloadBtn click={handle_reload} />
           </div>
           <div className="all-classes">
             {user && kelasses ? (

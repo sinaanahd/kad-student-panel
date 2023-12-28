@@ -4,9 +4,19 @@ import { Helmet } from "react-helmet";
 import LittleLoading from "../reuseables/little-loading";
 import SellKelas from "../sell-kelas/sell-kelas";
 import arrow from "../../asset/images/shop/arrow-down.svg";
+import ReloadBtn from "../reuseables/reload-btn/reload-btn";
 const ShopPage = () => {
-  const { kelasses, doreha, subjects, years, courses } =
-    useContext(DataContext);
+  const {
+    kelasses,
+    doreha,
+    subjects,
+    years,
+    courses,
+    get_kelasses,
+    setKelasses,
+    setDoreha,
+    get_doreha,
+  } = useContext(DataContext);
   const [active_filter, set_active_filter] = useState(false);
   const [filtered_class, set_filtered_class] = useState(false);
   const [subject, set_subject] = useState(false);
@@ -96,6 +106,12 @@ const ShopPage = () => {
     set_dore(false);
     set_subject(false);
     set_year(false);
+  };
+  const handle_reload = () => {
+    setDoreha(false);
+    get_doreha();
+    setKelasses(false);
+    get_kelasses();
   };
   return (
     <>
@@ -254,6 +270,7 @@ const ShopPage = () => {
         </section>
         <section className="products-place">
           <h1 className="title">فروشگاه کاد</h1>
+          <ReloadBtn click={handle_reload} />
           <div className="all-classes-wrapper">
             {!filtered_class ? (
               kelasses ? (

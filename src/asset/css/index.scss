@@ -69,6 +69,25 @@ body {
     }
 }
 
+    .reload-btn-wrapper {
+        @include flexMixin(column, center, flex-end);
+        cursor: pointer;
+        z-index: 20;
+        gap: 5px;
+        .tool-tip{
+            display: none;
+            position: absolute;
+            top: 30px;
+        }
+        &:hover{
+            .tool-tip{
+                @include flexMixin(row,center,center);
+            }
+        }
+    }
+
+
+
 .mm-width{
     max-width: 1300px;
 }
@@ -342,6 +361,7 @@ body {
         border-bottom: 1px solid #9D58C5;
         padding: 0 0 17px;
         @include flexMixin(row,space-between,center);
+        position: relative;
     }
     .box-title{
         font-size: 21px;
@@ -510,6 +530,19 @@ body {
         border-radius: 20px;
         gap: 46px;
         @include flexMixin(column,flex-start,center);
+        position: relative;
+        .box-header{
+            position: unset;
+        }
+        .reload-btn-wrapper{
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 100px;
+            .tool-tip{
+                top: 10px;
+            }
+        }
     }
     .all-classes{
         @include flexMixin(row,flex-start,center);
@@ -523,7 +556,7 @@ body {
         @include flexMixin(column,flex-start,center);
         background-color: $color-3;
         color: #fff;
-        padding: 38px 14px 18px;
+        padding: 28px 14px 18px;
         border-radius: 22px;
     }
     .class-is-active{
@@ -541,11 +574,11 @@ body {
         }
     }
     .main-class-name{
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         width: 100%;
         @include flexMixin(column,flex-start,center);
-        height: 45px;
+        min-height: 60px;
     }
     .main-class-teacher{
         font-size: 18px;
@@ -820,6 +853,7 @@ body {
         border-bottom: 1px solid #9D58C5;
         padding: 0 0 17px;
         @include flexMixin(row, space-between, center);
+        position: relative;
     }
     .box-title {
         font-size: 21px;
@@ -1070,6 +1104,15 @@ body {
         padding: 17px 17px 110px;
         background-color: #fff;
         border-radius: 14px;
+        position: relative;
+        .reload-btn-wrapper{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            .tool-tip{
+                display: none!important;
+            }
+        }
     }
     .factor-header{
         margin: 5px 0 10px;
@@ -1548,10 +1591,20 @@ body {
         padding: 34px 27px;
         background-color: #fff;
         border-radius: 20px;
+        position: relative;
     }
     .cal-title-wrapper{
         width: 100%;
         @include flexMixin(row,space-between,center);
+        .reload-btn-wrapper{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            .tool-tip{
+                top: 10px;
+            }
+        }
     }
     .filter-options{
         width: 100%;
@@ -1919,6 +1972,16 @@ body {
         max-width: 959px;
         @include flexMixin(column,flex-start,flex-start);
         gap: 27px;
+        position: relative;
+        .reload-btn-wrapper{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            .tool-tip{
+                top: 20px;
+            }
+        }
     }
     .title{
         font-size: 21px;
@@ -2459,12 +2522,11 @@ body {
         }
         .all-classes{
             gap: 8px;
-            justify-content: flex-start;
+            justify-content: center;
         }
         .class-wrapper{
-           width: 100%;
+           width: 60%;
            flex: unset;
-           max-width: 140px;
            padding: 10px;
         }
         .class-is-active{
@@ -2476,7 +2538,9 @@ body {
         }
         .main-class-name{
             font-size: 15px;
-            height: 30px;
+            width: 100%;
+            text-align: center;
+            min-height: unset;
         }
         .main-class-teacher{
             font-size: 14px;
@@ -2492,6 +2556,7 @@ body {
         }
         .enter-to-class-btn{
             font-size: 13px;
+            height: 30px;
         }
         .disabled.class-wrapper{
             .session-data{

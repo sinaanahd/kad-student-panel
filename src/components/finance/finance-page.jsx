@@ -5,8 +5,9 @@ import LittleLoading from "../reuseables/little-loading";
 import Factor from "./factor/factor";
 import InPayQeue from "./in-pay-qeue/in-pay-qeue";
 import Debt from "./debt-box/debt";
+import ReloadBtn from "../reuseables/reload-btn/reload-btn";
 const FinancePage = () => {
-  const { user, pay_info, get_info } = useContext(DataContext);
+  const { user, pay_info, get_info, setPay_info } = useContext(DataContext);
   const in_qeues = pay_info
     ? pay_info.filter((pi) => pi.status !== "پرداخت شده").reverse()
     : [];
@@ -16,6 +17,10 @@ const FinancePage = () => {
       get_info(user.user_id);
     }
   }, []);
+  const handle_reload = () => {
+    setPay_info(false);
+    get_info(user.user_id);
+  };
   return (
     <>
       <Helmet>
@@ -23,6 +28,7 @@ const FinancePage = () => {
       </Helmet>
       <div className="finance-page-wrapper">
         <section className="factors-part">
+          <ReloadBtn click={handle_reload} />
           <div className="factor-header">
             <span className="factor-item first-col">کلاس (ها)</span>
             <span className="factor-item">نوع و وضعیت پرداخت</span>

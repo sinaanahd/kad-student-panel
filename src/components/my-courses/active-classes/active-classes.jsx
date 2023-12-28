@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { DataContext } from "../../data/datacontext";
+import ReloadBtn from "../../reuseables/reload-btn/reload-btn";
 const ActiveClasses = () => {
-  const { kelasses, user } = useContext(DataContext);
+  const { kelasses, user, get_kelasses, setKelasses, setUser, get_user } =
+    useContext(DataContext);
   const find_active_classes = (e) => {
     const live_classes = [];
     kelasses.forEach((k) => {
@@ -56,6 +58,13 @@ const ActiveClasses = () => {
       return false;
     }
   };
+  const handle_reload = () => {
+    const id = user.user_id;
+    setUser(false);
+    get_user(id);
+    setKelasses(false);
+    get_kelasses();
+  };
   return (
     <section className="active-classes">
       <div className="box-header">
@@ -64,6 +73,7 @@ const ActiveClasses = () => {
           <span className="filter-btn active">کلاس‌های رایگان</span>
           <span className="filter-btn">ثبت نام شده</span>
         </div> */}
+        <ReloadBtn click={handle_reload} />
       </div>
       <div className="live-classes-wrapper">
         {kelasses && user ? (

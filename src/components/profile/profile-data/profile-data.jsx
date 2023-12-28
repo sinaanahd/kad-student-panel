@@ -5,8 +5,9 @@ import { DataContext } from "../../data/datacontext";
 import make_full_objects from "../../functions/make-full-objects";
 import axios from "axios";
 import urls from "../../urls/urls";
+import ReloadBtn from "../../reuseables/reload-btn/reload-btn";
 const ProfileData = () => {
-  const { user, setUser, years, subjects, ref_subjects, ref_years } =
+  const { user, setUser, years, subjects, ref_subjects, ref_years, get_user } =
     useContext(DataContext);
   const [name, set_name] = useState(false);
   const [name_err, set_name_err] = useState(false);
@@ -145,10 +146,16 @@ const ProfileData = () => {
         });
     }
   };
+  const handle_reload = () => {
+    const id = user.user_id;
+    setUser(false);
+    get_user(id);
+  };
   return (
     <section className="profile-data">
       <div className="box-header">
         <h2 className="box-title">اطلاعات کاربری</h2>
+        <ReloadBtn click={handle_reload} />
       </div>
       {name_err ||
       address_err ||
