@@ -12,7 +12,7 @@ const CartPage = () => {
   const [pay_option, set_pay_option] = useState(false);
   const [submit_pause, set_submit_pause] = useState(false);
   const [cash_pause, set_cash_pause] = useState(false);
-  const [ghest_num, set_ghest_num] = useState(3);
+  const [ghest_num, set_ghest_num] = useState(2);
   const [ghests, set_ghests] = useState(false);
   const [ghest_pause, set_ghest_pause] = useState(false);
   const [ghest_pay_pause, set_ghest_pay_pause] = useState(false);
@@ -42,7 +42,7 @@ const CartPage = () => {
   const get_ghest_link = () => {
     set_ghest_pay_pause(true);
     axios
-      .get(`${urls.sale}${user.user_id}-3`)
+      .get(`${urls.sale}${user.user_id}-2`)
       .then((res) => {
         // console.log(res.data);
         const { error, response, result } = res.data;
