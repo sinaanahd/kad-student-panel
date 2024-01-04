@@ -22,15 +22,15 @@ const Calneder = ({ active_plan }) => {
             const jalase = jalasat.findLast(
               (j) => j.parent_kelas_id === k.kelas_id
             );
-            obj[sp.week_day_english] = {
-              teacher: `استاد ${
-                k.kelas_title_and_ostad_name.split("استاد")[1]
-              }`,
-              time: `${convert_to_persian(
-                sp.start_time.split(":")[0]
-              )} - ${convert_to_persian(sp.finish_time.split(":")[0])}`,
-              jalase: jalase.jalase_title,
-            };
+            if (jalase) {
+              obj[sp.week_day_english] = {
+                teacher: `${k.kelas_title_and_ostad_name.split("استاد")[1]}`,
+                time: `${convert_to_persian(
+                  sp.start_time.split(":")[0]
+                )} - ${convert_to_persian(sp.finish_time.split(":")[0])}`,
+                jalase: jalase.jalase_title.split("-")[0],
+              };
+            }
           });
           week_plan.push({ ...obj, name: k.kelas_title });
         }
@@ -54,15 +54,15 @@ const Calneder = ({ active_plan }) => {
             const jalase = jalasat.findLast(
               (j) => j.parent_kelas_id === k.kelas_id
             );
-            obj[sp.week_day_english] = {
-              teacher: `استاد ${
-                k.kelas_title_and_ostad_name.split("استاد")[1]
-              }`,
-              time: `${convert_to_persian(
-                sp.start_time.split(":")[0]
-              )} - ${convert_to_persian(sp.finish_time.split(":")[0])}`,
-              jalase: jalase.jalase_title,
-            };
+            if (jalase) {
+              obj[sp.week_day_english] = {
+                teacher: `${k.kelas_title_and_ostad_name.split("استاد")[1]}`,
+                time: `${convert_to_persian(
+                  sp.start_time.split(":")[0]
+                )} - ${convert_to_persian(sp.finish_time.split(":")[0])}`,
+                jalase: jalase.jalase_title.split("-")[0],
+              };
+            }
           });
           week_plan.push({ ...obj, name: k.kelas_title });
         }
