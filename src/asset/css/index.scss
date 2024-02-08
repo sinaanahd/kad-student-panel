@@ -60,7 +60,9 @@ body {
         transform: rotate(360deg)
     }
 }
-
+.font-bold {
+    font-family: "yekan-bakh-fat" !important;
+}
 .inside-loader {
     @include flexMixin(row, center, center);
 
@@ -146,23 +148,18 @@ body {
     }
     .notif-wrapper{
         position: relative;
-        &::after{
-            display: block;
-            content: " ";
-            width: 8px;
-            height: 8px;
-            background-color: #eb5757;
-            border-radius: 50%;
-            position: absolute;
-            top: 1px;
-            right: -2px;
-            border: 1px solid #fff;
-        }
+        color: #000;
+        @include flexMixin(row , flex-end,center);
+        gap: 5px;
     }
-    .notif-img{
+    .notif-icon{
         position: relative;
-        top: 3px;
         cursor: pointer;
+        font-size: 30px;
+        @include flexMixin(row,center,center);
+    }
+    .amount-wrapper{
+        font-size: 12px;
     }
 }
 .page-wrapper{
@@ -248,83 +245,207 @@ body {
         transform: translateY(0px);
     }
 }
-.fixed-pop-up-wrapper{
+// .fixed-pop-up-wrapper{
+//     width: 100%;
+//     @include flexMixin(column,flex-start,center);
+//     .pop-up-icon{
+//         position: fixed;
+//         left: 20px;
+//         bottom: 20px;
+//         background-color: $color-2;
+//         width: 50px;
+//         height: 50px;
+//         @include flexMixin(row,center,center);
+//         border-radius: 50%;
+//         color: #fff;
+//         font-size: 25px;
+//         cursor: pointer;
+//         animation: change_bgc 0.5s ease-in-out 0.5s infinite alternate-reverse ;
+//         svg{
+//             animation: lighting 1s linear 0.1s infinite alternate-reverse;
+//         }
+//     }
+//     .pop-image-show-container{
+//         width: 100vw;
+//         height: 100vh;
+//         @include flexMixin(column,center,center);
+//         background-color: rgba(0,0,0,.4);
+//         position: fixed;
+//         top: 0;
+//         right: 0;
+//         z-index: 999999;
+//         img{
+//             max-width: 100%;
+//             border-radius: 20px;
+//             max-height: 400px;
+//         }
+//     }
+//     .pop-up-img-wrapper{
+//         background-color: #fff;
+//         border-radius: 20px;
+//         width: calc(100% - 20px);
+//         @include flexMixin(column,flex-start,center);
+//         gap: 20px;
+//         padding: 20px;
+//         max-width: 600px;
+//     }
+//     .pop-up-btns{
+//         width: 100%;
+//         @include flexMixin(row,center,center);
+//         gap: 10px;
+//         border-radius: 20px;
+//     }
+//     .pop-up-btn{
+//         width: 100px;
+//         height: 40px;
+//         color: #fff;
+//         background-color: $color-1;
+//         @include flexMixin(row,center,center);
+//         border-radius: 5px;
+//         cursor: pointer;
+//         font-weight: bold;
+//         border: 2px solid $color-1;
+//         transition: $transition;
+//         &:hover{
+//             color: $color-1;
+//             background-color: #fff;
+//         }
+//     }
+//     .close-btn.pop-up-btn{
+//         background-color: #000;
+//         border: 2px solid #000;
+//         &:hover{
+//             color: #000;
+//             background-color: #fff;
+//         }
+//     }
+
+// }
+.fixed-pop-up-wrapper {
     width: 100%;
-    @include flexMixin(column,flex-start,center);
-    .pop-up-icon{
+    @include flexMixin(column, flex-start, center);
+
+    .pop-up-icon {
         position: fixed;
         left: 20px;
         bottom: 20px;
-        background-color: $color-2;
+        background-color: #A667C0;
         width: 50px;
         height: 50px;
-        @include flexMixin(row,center,center);
+        @include flexMixin(row, center, center);
         border-radius: 50%;
         color: #fff;
         font-size: 25px;
         cursor: pointer;
-        animation: change_bgc 0.5s ease-in-out 0.5s infinite alternate-reverse ;
-        svg{
+        animation: change_bgc 0.5s ease-in-out 0.5s infinite alternate-reverse;
+
+        svg {
             animation: lighting 1s linear 0.1s infinite alternate-reverse;
         }
     }
-    .pop-image-show-container{
+
+    .pop-image-show-container {
         width: 100vw;
         height: 100vh;
-        @include flexMixin(column,center,center);
-        background-color: rgba(0,0,0,.4);
+        @include flexMixin(column, center, center);
+        background-color: rgba(0, 0, 0, .4);
         position: fixed;
         top: 0;
         right: 0;
         z-index: 999999;
-        img{
+
+        img {
             max-width: 100%;
             border-radius: 20px;
             max-height: 400px;
         }
     }
-    .pop-up-img-wrapper{
+
+    .pop-up-img-wrapper {
         background-color: #fff;
         border-radius: 20px;
         width: calc(100% - 20px);
-        @include flexMixin(column,flex-start,center);
+        @include flexMixin(column, flex-start, center);
         gap: 20px;
         padding: 20px;
         max-width: 600px;
+        position: relative;
     }
-    .pop-up-btns{
+
+    .pop-up-btns {
         width: 100%;
-        @include flexMixin(row,center,center);
+        @include flexMixin(row, center, center);
         gap: 10px;
         border-radius: 20px;
     }
-    .pop-up-btn{
-        width: 100px;
-        height: 40px;
+
+    .pop-up-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
         color: #fff;
-        background-color: $color-1;
-        @include flexMixin(row,center,center);
-        border-radius: 5px;
+        background-color: #A667C0;
+        @include flexMixin(row, center, center);
         cursor: pointer;
         font-weight: bold;
-        border: 2px solid $color-1;
+        border: 2px solid #A667C0;
         transition: $transition;
-        &:hover{
-            color: $color-1;
+        padding: 4px 0 0;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 13px;
+
+        &:hover {
+            color: #A667C0;
             background-color: #fff;
         }
     }
-    .close-btn.pop-up-btn{
+
+    .close-btn.pop-up-btn {
         background-color: #000;
         border: 2px solid #000;
-        &:hover{
+
+        &:hover {
             color: #000;
             background-color: #fff;
         }
     }
 
-}
+    .desc-text {
+        font-size: 20px;
+        text-align: center;
+        padding: 50px 0;
+    }
 
+    .btn-wrappers {
+        width: 100%;
+        @include flexMixin(row, center, center);
+        gap: 10px;
+    }
+
+    .call-us-now-btn {
+        font-size: 20px;
+        width: 200px;
+        height: 40px;
+        @include flexMixin(row, center, center);
+        background-color: #1D2B53;
+        box-shadow: 0 0 20px 0px #1D2B53;
+        animation: move_up_down_res_4 1s linear 0.1s infinite alternate;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    font {
+        color: #7E2553;
+        margin: 0 3px;
+    }
+
+    .small-text {
+        font-size: 15px;
+        text-decoration: underline;
+    }
+}
 
 @keyframes pulse {
     from {
@@ -337,6 +458,387 @@ body {
     }
 }
 
+/* wallet page */
+@keyframes scale_big {
+    from {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.wallet-page {
+    width: 100%;
+    @include flexMixin(column, flex-start, center);
+    gap: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    .page-intro {
+        @include flexMixin(column, flex-start, center);
+        gap: 20px;
+    }
+
+    .page-title {
+        font-size: 50px;
+    }
+
+    .page-main-text {
+        font-size: 20px;
+        text-align: center;
+        line-height: 40px;
+        max-width: 700px;
+    }
+
+    .reason-text {
+        @include flexMixin(row, space-between, center);
+        gap: 30px;
+        width: 100%;
+    }
+
+    .text-content {
+        @include flexMixin(column, flex-start, flex-start);
+        gap: 20px;
+        max-width: 700px;
+    }
+
+    .img-place {
+        flex: 0 0 400px;
+
+        img {
+            border-radius: 20px;
+        }
+    }
+
+    .semi-title {
+        font-size: 40px;
+    }
+
+    .desc-text {
+        font-size: 20px;
+        text-align: justify;
+        line-height: 40px;
+    }
+
+    .show-user-transaction {
+        width: 100%;
+        @include flexMixin(column, flex-start, center);
+        gap: 30px;
+    }
+
+    .transaction-table {
+        @include flexMixin(column, flex-start, center);
+        gap: 10px;
+        width: 100%;
+    }
+
+    .transaction-table-header {
+        max-width: 100%;
+        width: 500px;
+        @include flexMixin(row, space-between, center);
+        gap: 20px;
+        font-size: 15px;
+        background-color: $background-color;
+        height: 50px;
+        border-radius: 20px;
+        padding: 0 20px;
+
+        * {
+            flex: 1;
+        }
+    }
+
+    .transaction-table-row {
+        max-width: 100%;
+        width: 500px;
+        @include flexMixin(row, space-between, center);
+        gap: 20px;
+        font-size: 15px;
+        background-color: $background-color;
+        min-height: 60px;
+        border-radius: 20px;
+        padding: 5px 20px;
+        position: relative;
+
+        * {
+            flex: 1;
+            text-align: center;
+        }
+    }
+
+    .transaction-item,
+    .transaction-header-item {
+        @include flexMixin(row, center, center);
+    }
+
+    .amount-label-decider {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        font-size: 20px;
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        @include flexMixin(row, center, center);
+        padding: 2px 0 0;
+    }
+
+    .green.amount-label-decider {
+        background-color: green;
+    }
+
+    .red.amount-label-decider {
+        background-color: red;
+    }
+
+    .balance-wrapper {
+        width: 500px;
+        max-width: 100%;
+        @include flexMixin(row, flex-start, center);
+        font-size: 20px;
+        gap: 20px;
+    }
+
+    .go-to-shop-link {
+        width: 200px;
+        height: 45px;
+        border-radius: 12px;
+        @include flexMixin(row, center, center);
+        background-color: #A667C0;
+        font-size: 17px;
+        color: #fff;
+        animation: scale_big 1s ease-in-out 0.1s infinite alternate-reverse;
+    }
+}
+
+/* wallet page */
+
+/* fixed left menu */
+@keyframes scale_a_litte {
+    from {
+        transform: scale(0.9) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@keyframes jump_in {
+    from {
+        transform: translateX(-100px) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px) scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+.fixed-left-menu-wrapper {
+    .open-menu-icon {
+        position: fixed;
+        left: 20px;
+        bottom: 30px;
+        border-radius: 50%;
+        background-color: #FF004D;
+        width: 60px;
+        height: 60px;
+        border: 0px solid transparent;
+        @include flexMixin(row, center, center);
+        font-size: 30px;
+        color: #fff;
+        z-index: 999999999;
+        cursor: pointer;
+        animation: scale_a_litte 1s ease-in-out 0.1s infinite alternate-reverse;
+    }
+
+    .animate.link-to-special-place {
+        opacity: 0;
+    }
+
+    .link-to-special-place {
+        @include flexMixin(row, center, center);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        color: #fff;
+        position: fixed;
+        border: 0px solid transparent;
+        font-size: 25px;
+        z-index: 999999999;
+        // animation: jump_in 1s ease-in-out 0.1s 1 alternate;
+    }
+
+    .fixed-left-menu-wrapper-label {
+        position: absolute;
+        font-size: 13px;
+        padding: 2px 0 0;
+        width: 60px;
+        height: 25px;
+        color: #fff;
+        border-radius: 5px;
+        @include flexMixin(row, center, center);
+    }
+
+    .cart-link {
+        background-color: #EA2F86;
+        bottom: 80px;
+        left: 70px;
+
+        .fixed-left-menu-wrapper-label {
+            left: 42px;
+            top: 0px;
+            background-color: #EA2F86;
+        }
+    }
+
+    .wallet-link {
+        background-color: #1D2B53;
+        bottom: 40px;
+        left: 90px;
+
+        .fixed-left-menu-wrapper-label {
+            left: 42px;
+            top: 0px;
+            background-color: #1D2B53;
+        }
+    }
+
+    .gift-link {
+        background-color: #A667C0;
+        bottom: 100px;
+        left: 30px;
+
+        .fixed-left-menu-wrapper-label {
+            left: 40px;
+            top: -10px;
+            background-color: #A667C0;
+        }
+    }
+
+    .pop-image-show-container {
+        width: 100vw;
+        height: 100vh;
+        @include flexMixin(column, center, center);
+        background-color: rgba(0, 0, 0, .4);
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 999999;
+
+        img {
+            max-width: 100%;
+            border-radius: 20px;
+            max-height: 400px;
+        }
+    }
+
+    .pop-up-img-wrapper {
+        background-color: #fff;
+        border-radius: 20px;
+        width: calc(100% - 20px);
+        @include flexMixin(column, flex-start, center);
+        gap: 20px;
+        padding: 20px;
+        max-width: 600px;
+        position: relative;
+    }
+
+    .pop-up-btns {
+        width: 100%;
+        @include flexMixin(row, center, center);
+        gap: 10px;
+        border-radius: 20px;
+    }
+
+    .pop-up-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: #fff;
+        background-color: #A667C0;
+        @include flexMixin(row, center, center);
+        cursor: pointer;
+        font-weight: bold;
+        border: 0px solid #A667C0;
+        outline: 0px solid transparent;
+        transition: $transition;
+        padding: 4px 0 0;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 13px;
+
+        &:hover {
+            color: #A667C0;
+            background-color: #fff;
+        }
+    }
+
+    .close-btn.pop-up-btn {
+        background-color: #000;
+        border: 2px solid #000;
+
+        &:hover {
+            color: #000;
+            background-color: #fff;
+        }
+    }
+
+    .desc-text {
+        font-size: 20px;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .go-to-wallet-notice-btn {
+        background-color: #EA2F86;
+        width: 200px;
+        height: 30px;
+        color: #fff;
+        font-size: 16px;
+        @include flexMixin(row, center, center);
+        border-radius: 5px;
+    }
+
+    .copy {
+        text-decoration: underline;
+    }
+
+    .btn-wrappers {
+        width: 100%;
+        @include flexMixin(row, center, center);
+        gap: 10px;
+    }
+
+    .call-us-now-btn {
+        font-size: 20px;
+        width: 200px;
+        height: 40px;
+        @include flexMixin(row, center, center);
+        background-color: #1D2B53;
+        box-shadow: 0 0 20px 0px #1D2B53;
+        animation: move_up_down_res_4 1s linear 0.1s infinite alternate;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    font {
+        color: #7E2553;
+        margin: 0 3px;
+    }
+
+    .small-text {
+        font-size: 15px;
+        text-decoration: underline;
+    }
+}
+
+/* fixed left menu */
 
 .courses-page{
     width: 100%;
@@ -1720,7 +2222,10 @@ body {
             border-radius: 14px;
         }
     }
-
+    .kelas-img-link{
+        height: 126px;
+        width: 126px;
+    }
     .left-contents {
         @include flexMixin(column, flex-start, flex-start);
         width: 100%;
@@ -1733,6 +2238,7 @@ body {
         font-size: 16px;
         font-weight: bold;
         letter-spacing: -1px;
+        color: #fff;
     }
 
     .teachers-name {
@@ -2407,6 +2913,13 @@ body {
             top: 30px;
             padding: 20px 10px;
        }
+        .notif-wrapper {
+            @include flexMixin(column-reverse, flex-start, center);
+            gap: 3px;
+        }
+        .notif-icon{
+            font-size: 20px;
+        }
     }
     .open-menu{
         position: absolute;
@@ -2416,6 +2929,7 @@ body {
         @include flexMixin(row,flex-start,center);
         gap: 5px;
     }
+    
 }
 @media (max-width : 991px){
     .welcome-name{
@@ -2789,6 +3303,34 @@ body {
         .cal-row{
             width: 900px;
             justify-content: flex-start;
+        }
+    }
+    .fixed-pop-up-wrapper {
+        .desc-text {
+            font-size: 18px;
+            padding: 0 20px;
+        }
+    
+        .close-btn.pop-up-btn {
+            width: 25px;
+            height: 25px;
+        }
+    }
+    .wallet-page {
+        .transaction-header-item {
+            font-size: 14px;
+        }
+
+        .transaction-item {
+            font-size: 13px;
+        }
+
+        .reason-text {
+            @include flexMixin(column, flex-start, center);
+        }
+
+        .reason-text.reverse {
+            flex-direction: column-reverse;
         }
     }
 }

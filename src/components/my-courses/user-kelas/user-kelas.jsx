@@ -166,7 +166,8 @@ const User_kelas = ({ kelas }) => {
               <span
                 className="enter-to-class-btn"
                 onClick={() => {
-                  check_kelas_time(kelas.stream_plans);
+                  window.open(kelas.skyRoom_link);
+                  // check_kelas_time(kelas.stream_plans);
                 }}
               >
                 {class_time ? "زمان کلاس نیست" : "ورود به کلاس"}

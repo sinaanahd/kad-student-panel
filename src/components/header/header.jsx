@@ -3,13 +3,23 @@ import LittleLoading from "../reuseables/little-loading";
 
 import avatar from "../../asset/images/header/avatar.jpg";
 import arrow_down from "../../asset/images/header/arrow_drop_down.svg";
-import notif_icon from "../../asset/images/header/bell.svg";
+import { CiWallet } from "react-icons/ci";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import convert_to_persian from "../functions/convert-to-persian";
+import split_in_three from "../functions/spilit_in_three";
+import scrollToTop from "../functions/scroll";
 const Header = ({ user }) => {
   const [pop_up, set_pop_up] = useState(false);
   const exit_panel = () => {
     localStorage.clear();
     window.location.pathname = "/login";
+  };
+  const calcute_user_wallet = () => {
+    let sum = 0;
+    user.transactions.forEach((t) => {
+      sum += t.amount;
+    });
+    return sum;
   };
   return (
     <>
@@ -45,15 +55,18 @@ const Header = ({ user }) => {
           )}
         </div>
         <div className="header-icons">
-          <div className="notif-wrapper">
-            <img
-              src={notif_icon}
-              alt="اطلاعیه ها"
-              width={17}
-              height={25}
-              className="notif-img"
-            />
-          </div>
+          <Link to="/wallet" className="notif-wrapper" onClick={scrollToTop}>
+            <span className="amount-wrapper font-bold">
+              موجودی :{" "}
+              {user
+                ? split_in_three(convert_to_persian(calcute_user_wallet()))
+                : 0}{" "}
+              تومان
+            </span>
+            <span className="notif-icon">
+              <CiWallet />
+            </span>
+          </Link>
         </div>
       </header>
     </>

@@ -21,6 +21,8 @@ import CartPage from "./components/cart/cart";
 import OnlineStream from "./components/online-stream/online-strem";
 import Cookie from "./components/cookie-maker/cookie-maker";
 import FixedPopUp from "./components/reuseables/fixed-pop-up/fixed-pop-up";
+import FixedMenu from "./components/fixed-menu/fixed-menu";
+import Wallet from "./components/wallet/wallet";
 
 function App() {
   const {user} = useContext(DataContext);
@@ -59,6 +61,7 @@ function App() {
               <Route path="/dashboard" exact component={DashboardPage} />
               <Route path="/shop" exact component={ShopPage} />
               <Route path="/cart" exact component={CartPage} />
+              <Route path="/wallet" exact component={Wallet} />
               <Route path="/cookie" exact component={Cookie} />
               <Route path="/online/:id" exact component={OnlineStream} />
               <Route path="/not-found" component={NotFound} />
@@ -76,6 +79,7 @@ function App() {
             </Switch>
     </> }
         {/* <FixedPopUp /> */}
+        <FixedMenu />
     </BrowserRouter>
     </>
   );

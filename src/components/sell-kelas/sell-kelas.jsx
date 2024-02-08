@@ -8,12 +8,21 @@ const SellKelas = ({ kelas }) => {
   return (
     <div className="sell-class-wrapper">
       <div className="right-contents">
-        <img
-          width={126}
-          height={126}
-          src={kelas.image_link}
-          alt={kelas.kelas_title_and_ostad_name}
-        />
+        <a
+          href={`https://kadschool.com/Shop/product/${kelas.kelas_title_and_ostad_name.replaceAll(
+            " ",
+            "-"
+          )}`}
+          target="_blank"
+          className="kelas-img-link"
+        >
+          <img
+            width={126}
+            height={126}
+            src={kelas.image_link}
+            alt={kelas.kelas_title_and_ostad_name}
+          />
+        </a>
         <span className="dore-label">
           {doreha
             ? doreha.find((d) => d.dore_id === kelas.parent_dore_id).dore_title
@@ -21,7 +30,17 @@ const SellKelas = ({ kelas }) => {
         </span>
       </div>
       <div className="left-contents">
-        <span className="class-name">{kelas.kelas_title}</span>
+        <a
+          href={`https://kadschool.com/Shop/product/${kelas.kelas_title_and_ostad_name.replaceAll(
+            " ",
+            "-"
+          )}`}
+          target="_blank"
+          className="class-name"
+        >
+          {kelas.kelas_title}
+        </a>
+        {/* <span c></span> */}
         <span className="teachers-name">
           استاد{" "}
           {kelas.kelas_title_and_ostad_name.split("استاد")[1].split("-")[0]}

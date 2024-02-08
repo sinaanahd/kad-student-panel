@@ -3,3 +3,8 @@
     src: url(./Yekan-Bakh-Fa-04-Regular.ttf);
     font-display: swap;
 }
+@font-face {
+    font-family: "yekan-bakh-fat";
+    src: url(./Yekan-Bakh-fat.ttf);
+    font-display: swap;
+}

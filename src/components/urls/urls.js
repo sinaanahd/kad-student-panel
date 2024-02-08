@@ -14,7 +14,7 @@ const urls = {
   apollo: `${base_site}apollo11_add_phone_number/`,
   cart: `${base_site}cart/`,
   ghest_details: `${base_site}ghestiDetails/`,
-  sale: `${base_site}siteSale/`,
+  sale: `${base_site}siteSale2/`,
   call_request_marketing: `${base_site}call_request_marketing`,
   motive_quote: `${base_site}motivational_quote`,
   week_plan: `${base_site}week_plan`,
