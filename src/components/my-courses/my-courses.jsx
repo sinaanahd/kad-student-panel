@@ -77,6 +77,14 @@ const MYCourses = () => {
           <ActiveClasses />
         </div>
         <section className="all-classes-wrapper">
+          {/* <button
+            onClick={() => {
+              get_user(4325);
+            }}
+            className="test-get-user font-bold"
+          >
+            کاربر رو بگیر
+          </button> */}
           <div className="box-header">
             <h2 className="box-title">تمامی کلاس ها</h2>
             <div className="filters-wrapper">

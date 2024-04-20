@@ -206,7 +206,7 @@ const CartPage = () => {
                       نقدی
                     </span>
                   )}
-                  {ghest_pause ? (
+                  {/* {ghest_pause ? (
                     <span className="option-btn">
                       <LittleLoading />
                     </span>
@@ -214,7 +214,7 @@ const CartPage = () => {
                     <span className="option-btn" onClick={calculate_ghest}>
                       قسطی
                     </span>
-                  )}
+                  )} */}
                 </span>
                 {ghests ? (
                   <>
