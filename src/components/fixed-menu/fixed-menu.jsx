@@ -128,9 +128,9 @@ const FixedMenu = () => {
               <br />
               شما میتونی با مشاور های ما تماس بگیری و کلاسی رو که میخوای بخری،
               خیلی سریع توضیحاتشو داشته باشی. کلی تخفیف و هدیه منتظرته ! پس همین
-              الان به وسیله آیدی زیر با ما در ارتباط باش :
+              الان به وسیله شماره‌های زیر با ما در ارتباط باش :
             </p>
-            <span className="btn-wrappers">
+            {/* <span className="btn-wrappers">
               <a
                 href="https://t.me/Kad_team"
                 className="call-us-now-btn"
@@ -141,15 +141,15 @@ const FixedMenu = () => {
               {/* <a href="tel:+982162999110" className="call-us-now-btn">
                 {"۰۲۱-" + convert_to_persian(62999110)}
               </a> */}
-            </span>
-            {/* <span className="btn-wrappers">
+            {/* </span> */}
+            <span className="btn-wrappers">
               <a href="tel:+982166950624" className="call-us-now-btn">
                 {"۰۲۱-" + convert_to_persian(66950624)}
               </a>
               <a href="tel:+982162999110" className="call-us-now-btn">
                 {"۰۲۱-" + convert_to_persian(62999110)}
               </a>
-            </span> */}
+            </span>
             <p className="desc-text font-bold">
               همچنین می توانید با استفاده از کیف پول خود از جایزه ۱۰۰ هزار
               تومانی ثبت نام یا همراهی استفاده کنید. کلی جایزه و تخفیف دیگه هم
