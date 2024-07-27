@@ -2225,6 +2225,20 @@ body {
     padding: 13px 17px;
     gap: 13px;
     transition: $transition;
+    overflow: hidden;
+    position: relative;
+    .class-for-1404 {
+        position: absolute;
+        width: 150px;
+        background-color: #FFAF18;
+        color: #fff;
+        height: 30px;
+        border-radius: 12px;
+        @include flexMixin(row, center, center);
+        transform: rotate(45deg);
+        top: 20px;
+        right: -40px;
+    }
     .right-contents {
         @include flexMixin(column, space-between, center);
         gap: 20px;

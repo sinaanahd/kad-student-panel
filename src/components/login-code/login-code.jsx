@@ -23,13 +23,14 @@ const LoginCode = () => {
   const [get_user_pause, set_get_user_pause] = useState(false);
   const get_sms_code = () => {
     if (phone_number) {
+      console.log("request");
       setPause(true);
       // `https://kadschool.com/backend/kad_api/verify_phone_number/09351589376`
       axios
         .get(`${urls.verify_number}${phone_number}`)
         .then((res) => {
           const { been_before, user_id, verification_code } = res.data;
-          // console.log(res.data);
+          console.log("data : ", res.data);
           setPause(false);
           if (been_before) {
             set_code_data(verification_code);

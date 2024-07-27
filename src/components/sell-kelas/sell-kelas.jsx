@@ -7,6 +7,11 @@ const SellKelas = ({ kelas }) => {
 
   return (
     <div className="sell-class-wrapper">
+      {kelas.isFor1404 ? (
+        <span className="class-for-1404 font-bold">۱۴۰۴</span>
+      ) : (
+        <></>
+      )}
       <div className="right-contents">
         <a
           href={`https://kadschool.com/Shop/product/${kelas.kelas_title_and_ostad_name.replaceAll(

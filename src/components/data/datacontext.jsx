@@ -338,6 +338,7 @@ const DataProvider = ({ children }) => {
       .get(`${urls.user}${id}`)
       .then((res) => {
         const user = res.data;
+        // console.log(user);
         setUser(user);
         if (user.kelases) {
         }

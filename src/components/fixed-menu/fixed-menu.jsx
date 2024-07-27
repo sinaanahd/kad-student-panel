@@ -60,7 +60,7 @@ const FixedMenu = () => {
               سبد خرید
             </span>
           </Link>
-          <Link
+          {/* <Link
             to="/wallet"
             onClick={handle_deactivation}
             className={"link-to-special-place wallet-link "}
@@ -69,7 +69,7 @@ const FixedMenu = () => {
             <span className="fixed-left-menu-wrapper-label font-bold">
               کیف پول
             </span>
-          </Link>
+          </Link> */}
           <button
             className={"link-to-special-place gift-link "}
             onClick={() => {
@@ -150,7 +150,7 @@ const FixedMenu = () => {
                 {"۰۲۱-" + convert_to_persian(62999110)}
               </a>
             </span>
-            <p className="desc-text font-bold">
+            {/* <p className="desc-text font-bold">
               همچنین می توانید با استفاده از کیف پول خود از جایزه ۱۰۰ هزار
               تومانی ثبت نام یا همراهی استفاده کنید. کلی جایزه و تخفیف دیگه هم
               توی صفحه کیف پول منتظرته.
@@ -165,7 +165,7 @@ const FixedMenu = () => {
               }}
             >
               صفحه کیف پول
-            </a>
+            </a> */}
             <div className="pop-up-btns">
               <button
                 className="close-btn pop-up-btn"

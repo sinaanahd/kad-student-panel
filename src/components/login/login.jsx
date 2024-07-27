@@ -24,6 +24,7 @@ const Login = () => {
       axios
         .get(`${urls.password}${phone_number}`)
         .then((res) => {
+          // console.log(res);
           const { exists, password, user_id } = res.data;
           if (exists) {
             if (password === pass) {
@@ -31,6 +32,7 @@ const Login = () => {
                 .get(`${urls.user}${user_id}`)
                 .then((res) => {
                   const user = res.data;
+                  // console.log(user);
                   setUser(user);
                   localStorage.setItem("kad-user", JSON.stringify(user));
                   setPause(false);

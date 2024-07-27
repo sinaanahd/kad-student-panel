@@ -23,7 +23,7 @@ const CartPage = () => {
   const get_naghd_link = () => {
     set_cash_pause(true);
     axios
-      .get(`${urls.sale}${user.user_id}-0-true`)
+      .get(`${urls.sale}${user.user_id}-0-false`)
       .then((res) => {
         // console.log(res.data);
         const { error, response, result } = res.data;
@@ -42,7 +42,7 @@ const CartPage = () => {
   const get_ghest_link = () => {
     set_ghest_pay_pause(true);
     axios
-      .get(`${urls.sale}${user.user_id}-2-true`)
+      .get(`${urls.sale}${user.user_id}-2-false`)
       .then((res) => {
         // console.log(res.data);
         const { error, response, result } = res.data;
@@ -156,7 +156,7 @@ const CartPage = () => {
                   تومان
                 </span>
               </span>
-              <span className="final-data-item">
+              {/* <span className="final-data-item">
                 <span className="item-title">اعتبار کیف پول</span>
                 <span className="item-num">
                   <bdi>
@@ -167,17 +167,13 @@ const CartPage = () => {
                     تومان
                   </bdi>
                 </span>
-              </span>
+              </span> */}
               <span className="final-data-item sumation">
                 <span className="item-title">جمع سبد خرید</span>
                 <span className="item-num">
                   {split_in_three(
                     convert_to_persian(
-                      cart
-                        ? cart.final_price - calcute_user_wallet() >= 0
-                          ? cart.final_price - calcute_user_wallet()
-                          : 0
-                        : 0
+                      cart ? (cart.final_price >= 0 ? cart.final_price : 0) : 0
                     )
                   )}{" "}
                   تومان
@@ -230,11 +226,7 @@ const CartPage = () => {
                             {convert_to_persian(i + 1)}
                           </span>
                           <span className="ghest-num num-data">
-                            {split_in_three(
-                              convert_to_persian(
-                                g[0] - Math.ceil(calcute_user_wallet() / 2)
-                              )
-                            )}{" "}
+                            {split_in_three(convert_to_persian(g[0]))}{" "}
                             <span className="toman">تومان</span>
                           </span>
                           <span className="ghest-num">
